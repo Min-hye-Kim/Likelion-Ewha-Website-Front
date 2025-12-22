@@ -31,7 +31,6 @@ const TopBar = ({ onClickMenu }) => {
 
 export default TopBar;
 
-
 const Topbar = styled.header`
   display: flex;
   justify-content: center;
@@ -74,6 +73,7 @@ const Logo = styled(NavLink)`
 const PcNav = styled.nav`
   display: flex;
   align-items: center;
+  gap: 32px;
 
   @media (max-width: 799px) {
     display: none;
