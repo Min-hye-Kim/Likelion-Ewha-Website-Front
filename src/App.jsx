@@ -1,11 +1,12 @@
-import TopBar from "./components/topbar.jsx";
-
+import TopBar from "./components/topbar";
+import BottomBar from "./components/bottombar";
 
 function App() {
   return (
     <>
       <TopBar />
-      <div style={{ height: "200vh" }}>테스트</div>
+      <main style={{ minHeight: "120vh" }} />
+      <BottomBar />
     </>
   );
 }
