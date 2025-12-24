@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 
-const DropDown2 = ({ options = [], defaultValue, placeholder = "선택하세요", onSelect, unit = "" }) => {
+const DropDown2 = ({ options = [], defaultValue, placeholder = "선택하세요", onSelect, unit = "", error = false }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState(defaultValue || "");
   const dropdownRef = useRef(null);
@@ -29,6 +29,7 @@ const DropDown2 = ({ options = [], defaultValue, placeholder = "선택하세요"
     <Container ref={dropdownRef}>
       <SelectButton 
         $isOpen={isOpen}
+        $error={error}
         className="h5-regular"
       >
         <TextWrapper>
@@ -76,7 +77,7 @@ const SelectButton = styled.button`
   gap: 0.5rem;
   background: var(--common-100);
   border-radius: 0.25rem;
-  border: 1px solid var(--neutral-95);
+  border: 1px solid ${(props) => (props.$error ? 'var(--primary-sub)' : 'var(--neutral-95)')};
   cursor: default;
 `;
 
