@@ -1,18 +1,18 @@
 import styled from "styled-components";
 
-export const SelectPositiveButton = (props) => (
+export const SelectPositiveButtonMobile = (props) => (
     <SelectedButton {...props}>대면</SelectedButton>
 );
 
-export const SelectNegativeButton = (props) => (
+export const SelectNegativeButtonMobile = (props) => (
     <SelectedButton {...props}>비대면</SelectedButton>
 );
 
-export const UnselectPositiveButton = (props) => (
+export const UnselectPositiveButtonMobile = (props) => (
     <UnselectedButton {...props}>대면</UnselectedButton>
 );
 
-export const UnselectNegativeButton = (props) => (
+export const UnselectNegativeButtonMobile = (props) => (
     <UnselectedButton {...props}>비대면</UnselectedButton>
 );
 
@@ -26,8 +26,8 @@ export const UnselectedRadio = () => <RadioUnselected />;
 
 
 const BaseSelectButton = styled.button`
-    width: 16.09375rem;
-    height: 2.625rem;
+    width: 9.625rem;
+    height: 2.25rem;
     padding: 0.625rem 2.5rem;
 
     display: flex;

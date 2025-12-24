@@ -112,5 +112,3 @@ const DefaultButton = styled(BaseButton)`
     background-color: #474747;
     color: #ffffff;
 `;
-
-
