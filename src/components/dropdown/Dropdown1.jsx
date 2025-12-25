@@ -129,7 +129,7 @@ const OptionsList = styled.ul`
 const OptionItem = styled.li`
   padding: 1rem 1.5rem;
   background: var(--common-100);
-  color: var(--neutral-20);
+  color: var(--neutral-30);
   white-space: nowrap;
 
   cursor: pointer;
