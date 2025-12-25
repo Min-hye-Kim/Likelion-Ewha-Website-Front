@@ -84,7 +84,7 @@ const TextWrapper = styled.div`
 const QuestionText = styled.span`
   display: block;
   text-align: left;
-  color: ${(props) => (props.$styleType === 1 ? 'var(--neutral-30)' : 'var(--neutral-50)')};
+  color: ${(props) => (props.$styleType === 1 ? 'var(--neutral-20)' : 'var(--neutral-50)')};
 `;
 
 const ArrowButton = styled.div`
