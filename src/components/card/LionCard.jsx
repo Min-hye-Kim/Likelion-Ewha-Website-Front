@@ -64,6 +64,7 @@ const CardImage = styled.img`
 `;
 
 const Name = styled.div`
+  color: var(--neutral-20);
   margin-bottom: 0.38rem;
 `;
 
