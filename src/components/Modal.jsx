@@ -111,7 +111,7 @@ export function Modal({
   closeOnOverlay = true,
   closeOnEsc = true,
 }) {
-  const align = alignProp ?? (type === "info" && showClose ? "left" : "center");
+  const align = alignProp ?? (showClose ? "left" : "center");
 
   const hasHeader = Boolean(title || description);
   const hasIcon = Boolean(icon);
