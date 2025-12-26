@@ -142,7 +142,7 @@ const OptionItem = styled.li`
   ${(props) =>
     props.$isSelected &&
     `
-    background: var(--cool-neutral-99);
+    background: var(--cool-neutral-98);
   `}
 
   &:not(:last-child) {
