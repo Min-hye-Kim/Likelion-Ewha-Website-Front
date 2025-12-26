@@ -155,7 +155,6 @@ const SubText = styled.span`
 const InputBox = styled.div`
   display: flex;
   align-items: center;
-  padding: 12px 20px;
   border-radius: 50px;
   align-self: stretch;
   background: #F4F4F5;
@@ -174,6 +173,7 @@ const InputBox = styled.div`
         border: 1px solid #F4F4F5;
         width: 395px;
         height: 52px;
+        padding: 12px 24px;
           @media (max-width: 799px) { /* 모바일 */
             width: 320px;
             height: 40px;
@@ -187,6 +187,7 @@ const InputBox = styled.div`
         border: 1px solid #F4F4F5;
         width: 535px;
         height: 46px;
+        padding: 12px 20px;
           @media (max-width: 799px) { /* 모바일 */
             width: 316px;
             height: 36px;
@@ -200,6 +201,7 @@ const InputBox = styled.div`
         border: 1px solid #F4F4F5;
         width: 474px;
         height: 52px;
+        padding: 14px 28px;
       `;
     }
   }}
