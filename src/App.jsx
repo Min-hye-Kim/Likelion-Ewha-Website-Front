@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Layout from "./layouts/layout.jsx";
 import Home from "./pages/Home.jsx";
+import Project from './pages/project/Project.jsx';
 
 function App() {
   return (
@@ -10,7 +11,7 @@ function App() {
         <Route index element={<Home />} />
 
         {/* Public pages */}
-        <Route path="project" element={<div>PROJECT</div>} />
+        <Route path="project" element={<Project />} />
         <Route path="people" element={<div>PEOPLE</div>} />
         <Route path="recruit" element={<div>RECRUIT</div>} />
 
