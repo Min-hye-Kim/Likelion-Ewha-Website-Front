@@ -46,9 +46,19 @@ const DropDown1 = ({
   // 옵션 중 가장 긴 텍스트 기준으로 width 계산
   useLayoutEffect(() => {
     if (hiddenOptionsRef.current) {
-      setTextWidth(hiddenOptionsRef.current.scrollWidth);
+      const items = hiddenOptionsRef.current.children;
+      let maxWidth = 0;
+      
+      for (let i = 0; i < items.length; i++) {
+        const itemWidth = items[i].offsetWidth;
+        if (itemWidth > maxWidth) {
+          maxWidth = itemWidth;
+        }
+      }
+      
+      setTextWidth(maxWidth);
     }
-  }, [options]);
+  }, [options, isMobile]);
 
   const handleSelect = (option) => {
     setSelectedValue(option);
@@ -172,6 +182,10 @@ const ArrowButton = styled.div`
 
   @media (max-width: 799px) {
     padding: 0.68rem 0.5rem;
+    svg {
+      width: 0.875rem;
+      height: 0.4375rem;
+    }
   }
 `;
 
@@ -180,7 +194,7 @@ const OptionsList = styled.ul`
   top: 100%;
   left: 0;
 
-  max-height: 17.25rem;
+  max-height: 14.2rem;
   overflow-y: auto;
 
   background: var(--common-100);
@@ -196,6 +210,10 @@ const OptionsList = styled.ul`
   visibility: ${(props) => (props.$isOpen ? "visible" : "hidden")};
   opacity: ${(props) => (props.$isOpen ? "1" : "0")};
   pointer-events: ${(props) => (props.$isOpen ? "auto" : "none")};
+
+  @media (max-width: 799px) {
+    max-height: 9.7rem;
+  }
 `;
 
 const OptionItem = styled.li`
@@ -225,9 +243,12 @@ const HiddenOptionsList = styled.ul`
   visibility: hidden;
   pointer-events: none;
 
+  display: flex;
+  flex-direction: column;
   width: max-content;
   white-space: nowrap;
 
   padding: 0;
   margin: 0;
+  list-style: none;
 `;
