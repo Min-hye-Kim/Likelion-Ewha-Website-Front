@@ -80,6 +80,11 @@ const SelectButton = styled.button`
   border-radius: 0.25rem;
   border: 1px solid ${(props) => (props.$error ? 'var(--primary-sub)' : 'var(--neutral-95)')};
   cursor: ${(props) => (props.$disabled ? 'not-allowed' : 'default')};
+  transition: padding 0.2s ease;
+
+  @media (max-width: 799px) {
+    padding: 0.38rem 0.5rem;
+  }
 `;
 
 const TextWrapper = styled.div`
@@ -91,7 +96,13 @@ const SelectedText = styled.span`
   width: 4.5rem;
   display: block;
   text-align: left;
+  white-space: nowrap;
   color: var(--neutral-30);
+  transition: width 0.2s ease;
+
+  @media (max-width: 799px) {
+    width: auto;
+  }
 `;
 
 const ArrowButton = styled.div`
@@ -120,7 +131,7 @@ const OptionsList = styled.ul`
   margin-top: 0.5rem;
   left: 0;
   right: 0;
-  max-height: 17.25rem;
+  max-height: 10.2rem;
   overflow-y: auto;
   background: var(--common-100);
   border-radius: 0.25rem;
@@ -128,6 +139,10 @@ const OptionsList = styled.ul`
   list-style: none;
   padding: 0;
   z-index: 1000;
+
+  @media (max-width: 799px) {
+    max-height: 9.3rem;
+  }
 `;
 
 const OptionItem = styled.li`
@@ -135,6 +150,7 @@ const OptionItem = styled.li`
   background: var(--common-100);
   color: var(--neutral-20);
   white-space: nowrap;
+  text-align: center;
 
   cursor: pointer;
   transition: all 0.2s ease;
@@ -151,5 +167,9 @@ const OptionItem = styled.li`
 
   &:not(:last-child) {
     border-bottom: 1px solid var(--neutral-95);
+  }
+
+  @media (max-width: 799px) {
+    padding: 0.38rem 0.5rem;
   }
 `;
