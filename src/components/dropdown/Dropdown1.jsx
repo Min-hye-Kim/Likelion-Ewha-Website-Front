@@ -215,6 +215,7 @@ const OptionsList = styled.ul`
   visibility: ${(props) => (props.$isOpen ? "visible" : "hidden")};
   opacity: ${(props) => (props.$isOpen ? "1" : "0")};
   pointer-events: ${(props) => (props.$isOpen ? "auto" : "none")};
+  transition: opacity 0.2s ease, visibility 0.2s ease;
 
   @media (max-width: 799px) {
     max-height: 9.7rem;

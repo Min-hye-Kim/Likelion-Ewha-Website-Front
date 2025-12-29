@@ -55,20 +55,18 @@ const DropDown2 = ({ options = [], defaultValue, placeholder = "선택하세요"
         </ArrowButton>
       </SelectButton>
       
-      {isOpen && (
-        <OptionsList>
-          {options.map((option, index) => (
-            <OptionItem
-              key={index}
-              onClick={() => handleSelect(option)}
-              $isSelected={selectedValue === option}
-              className={isMobile ? "footnote-regular" : "h5-regular"}
-            >
-              {option}
-            </OptionItem>
-          ))}
-        </OptionsList>
-      )}
+      <OptionsList $isOpen={isOpen}>
+        {options.map((option, index) => (
+          <OptionItem
+            key={index}
+            onClick={() => handleSelect(option)}
+            $isSelected={selectedValue === option}
+            className={isMobile ? "footnote-regular" : "h5-regular"}
+          >
+            {option}
+          </OptionItem>
+        ))}
+      </OptionsList>
     </Container>
   );
 };
@@ -156,6 +154,11 @@ const OptionsList = styled.ul`
   list-style: none;
   padding: 0;
   z-index: 1000;
+  
+  visibility: ${(props) => (props.$isOpen ? 'visible' : 'hidden')};
+  opacity: ${(props) => (props.$isOpen ? '1' : '0')};
+  pointer-events: ${(props) => (props.$isOpen ? 'auto' : 'none')};
+  transition: opacity 0.2s ease, visibility 0.2s ease;
 
   @media (max-width: 799px) {
     max-height: 9.3rem;
