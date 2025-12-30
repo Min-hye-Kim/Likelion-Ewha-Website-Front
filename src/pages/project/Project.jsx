@@ -45,6 +45,7 @@ function Project() {
 
     return (
         <ProjectWrapper>
+            <Contents>
             {/*페이지 정보*/}
             <PageInfo>
                 <PageName>PROJECT</PageName>
@@ -71,13 +72,18 @@ function Project() {
             {/*프로젝트*/}
             <ProjectGrid>
                 {currentProjects.map((project) => (
-                    <ProjectCard1
-                        onClick={handleDetailPage}
-                        project="AI 추천 서비스"
-                        description="사용자 상태 기반 맞춤 추천 프로젝트"
-                        tags={['AI', 'React', 'UX']}
-                        styleType={1}
-                    />
+                    <div
+                        key={project.id}
+                        onClick={() => navigate('/project/detail')}
+                        style={{ cursor: 'pointer' }}
+                    >
+                        <ProjectCard1
+                            project="AI 추천 서비스"
+                            description="사용자 상태 기반 맞춤 추천 프로젝트"
+                            tags={['AI', 'React', 'UX']}
+                            styleType={1}
+                        />
+                    </div>
                 ))}
             </ProjectGrid>
 
@@ -111,6 +117,7 @@ function Project() {
                     <img src='../../icons/rightPagination.svg' />
                 </PageBtn>
             </Pagination>
+            </Contents>
         </ProjectWrapper>
     )
 };
@@ -119,6 +126,11 @@ export default Project;
 
 const ProjectWrapper = styled.div`
     width: 100%;
+`
+
+const Contents = styled.div`
+    width: 100%;
+    max-width: 971px;
     padding: 80px 80px 160px 80px;
     gap: 20px;
     display: flex;
