@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
-const SegmentBar = ({ items = [], styleType = 1, onSelect }) => {
+
+const SegmentBar = ({ items = [], styleType = 1, onSelect, style }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 799);
 
@@ -22,7 +23,7 @@ const SegmentBar = ({ items = [], styleType = 1, onSelect }) => {
   };
 
   return (
-    <Wrapper $styleType={styleType}>
+    <Wrapper style={style} $styleType={styleType}>
       {items.map((item, index) => (
         <Button
           key={index}
