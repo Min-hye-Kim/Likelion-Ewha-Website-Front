@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import DropDown1 from '/src/components/dropdown/Dropdown1';
-import LionCard from '/src/components/card/LionCard';
+import MemberCard from '/src/components/card/MemberCard';
 import SegmentBar from '/src/components/SegmentBar';
 
 function People() {
@@ -22,7 +22,7 @@ function People() {
                     <p className='h3-bold' style={{ color: 'var(--Atomic-Neutral-30, var(--Neutral-30, #474747))', textAlign: 'center'}}>운영진</p>
                     <p className='h5-regular' style={{ color: 'var(--Atomic-Neutral-50, var(--Neutral-50, #737373))', fontSize: '16px', marginBottom: '32px'}}>이화여대 멋쟁이사자처럼 00기 운영진입니다.</p>
                     <LionCardGrid>
-                        <LionCard
+                        <MemberCard
                             name='서예린'
                             part='프론트엔드'
                             position='운영진'
@@ -41,7 +41,7 @@ function People() {
                                         onSelect={(index, item) => setCategory(item)}
                                     />
                     <LionCardGrid style={{ marginTop: '60px'}}>
-                        <LionCard
+                        <MemberCard
                             name='서예린'
                             part='프론트엔드'
                             department='컴퓨터공학과 25'
