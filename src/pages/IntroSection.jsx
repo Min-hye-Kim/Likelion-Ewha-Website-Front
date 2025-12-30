@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components"; // ✅ keyframes 불러오기
 import orangePattern from "../../public/icons/orange.svg";
 import greenPattern from "../../public/icons/green.svg";
-import mainlogo from "../../public/icons/logo.svg";
+import Clover1Icon from "../../public/icons/clover1.svg";
 import {
   RecruitAlarmButton,
   RecruitInfoButton,
@@ -18,37 +18,32 @@ const IntroSection = () => {
   // --------------------------------------------------------
   // 1. 상태 관리
   // --------------------------------------------------------
-  const isRecruiting = false; //  false(마감/알림) / true(모집중)
+  const isRecruiting = false;
 
-  const [isAlarmModalOpen, setIsAlarmModalOpen] = useState(false); // 알림 모달
-  const [isCodeModalOpen, setIsCodeModalOpen] = useState(false); // 코드 입력 모달
-  const [codeValue, setCodeValue] = useState(""); // 입력된 코드 값
+  const [isAlarmModalOpen, setIsAlarmModalOpen] = useState(false);
+  const [isCodeModalOpen, setIsCodeModalOpen] = useState(false);
+  const [codeValue, setCodeValue] = useState("");
 
-  // [A] 모집 중일 때 -> 지원 페이지 이동
   const goRecruitPage = () => {
     window.open("https://apply.likelion.org", "_blank");
   };
 
-  // [B] 지원서 열람하기 클릭 -> 코드 모달 열기
   const openCodeModal = (e) => {
-    e.preventDefault(); // a 태그 이동 방지
-    setCodeValue(""); // 코드 초기화
+    e.preventDefault();
+    setCodeValue("");
     setIsCodeModalOpen(true);
   };
 
-  // [C] 모집 마감일 때 -> 알림 모달 열기
   const openAlarmModal = () => {
     setIsAlarmModalOpen(true);
   };
 
-  // [D] 코드 확인 로직 (나중에 API 연결)
   const handleCheckCode = () => {
     if (codeValue.trim() === "") return;
     alert(`입력한 코드: ${codeValue}\n확인되었습니다! (API 연결 추후에 필요)`);
     setIsCodeModalOpen(false);
   };
 
-  // [E] 카카오톡 문의하기 이동
   const goKakaoChannel = () => {
     window.open("https://pf.kakao.com/_htxexfd", "_blank");
   };
@@ -64,13 +59,19 @@ const IntroSection = () => {
             국내 최대 규모의 연합 IT 동아리 멋쟁이사자처럼 X 이화여자대학교
           </SubText>
 
-          <LogoImg src={mainlogo} alt="LIKELION EWHA" />
+          {/* 로고 영역 */}
+          <LogoWrapper>
+            <div className="big-title">
+              <span>LIKELI</span>
+              {/* 회전하는 클로버 아이콘 */}
+              <img src={Clover1Icon} alt="logo-icon" className="flower-o" />
+              <span>
+                N <span className="green-text">EWHA</span>
+              </span>
+            </div>
+          </LogoWrapper>
 
-          {/* =======================================================
-              [버튼 영역]
-          ======================================================== */}
-
-          {/* PC 버튼 */}
+          {/* 버튼 영역 */}
           <PcButtonArea>
             {isRecruiting ? (
               <RecruitInfoButton onClick={goRecruitPage} />
@@ -79,7 +80,6 @@ const IntroSection = () => {
             )}
           </PcButtonArea>
 
-          {/* Mobile 버튼 */}
           <MobileButtonArea>
             {isRecruiting ? (
               <RecruitInfoButtonMobile onClick={goRecruitPage} />
@@ -87,6 +87,7 @@ const IntroSection = () => {
               <RecruitAlarmButtonMobile onClick={openAlarmModal} />
             )}
           </MobileButtonArea>
+
           {isRecruiting ? (
             <SubLink href="#" onClick={openCodeModal}>
               지원서를 제출하셨나요? <u>지원서 열람하기</u>
@@ -97,9 +98,7 @@ const IntroSection = () => {
         </Content>
       </Section>
 
-      {/* =======================================================
-           [모달 1] 알림 신청 모달 (isRecruiting = false 일 때)
-      ======================================================== */}
+      {/* 모달 컴포넌트들 */}
       <Modal
         open={isAlarmModalOpen}
         onClose={() => setIsAlarmModalOpen(false)}
@@ -119,13 +118,10 @@ const IntroSection = () => {
         ]}
       />
 
-      {/* =======================================================
-            [모달 2] 지원 코드 입력 모달
-      ======================================================== */}
       <Modal
         open={isCodeModalOpen}
         onClose={() => setIsCodeModalOpen(false)}
-        type="form" // 폼 타입
+        type="form"
         title="지원 코드 입력"
         description={
           "지원서를 열람하기 위해서\n지원서 작성시에 발급받은 지원 코드가 필요해요."
@@ -136,7 +132,6 @@ const IntroSection = () => {
           onChange: (e) => setCodeValue(e.target.value),
           placeholder: "코드를 입력해주세요.",
         }}
-        // 하단 버튼 설정
         actions={[
           {
             label: "확인",
@@ -157,6 +152,15 @@ const IntroSection = () => {
 };
 
 export default IntroSection;
+
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
 
 const Section = styled.section`
   position: relative;
@@ -221,17 +225,6 @@ const Content = styled.div`
   width: 100%;
 `;
 
-const LogoImg = styled.img`
-  width: 52.875rem;
-  max-width: 90%;
-  height: auto;
-  margin-bottom: 0;
-
-  @media (max-width: 600px) {
-    width: 17.25rem;
-  }
-`;
-
 const SubText = styled.p`
   color: var(--Atomic-Cool-Neutral-70, #989ba2);
   text-align: center;
@@ -246,6 +239,51 @@ const SubText = styled.p`
     font-size: 0.625rem;
     margin-bottom: 12px;
     line-height: normal;
+  }
+`;
+
+const LogoWrapper = styled.div`
+  width: auto;
+  max-width: 100%;
+  margin-bottom: 0;
+
+  .big-title {
+    font-family: "Bayon", sans-serif;
+    font-size: 9.704rem;
+    color: #1a1a1a;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    gap: 0;
+
+    /* 클로버 아이콘 스타일 */
+    .flower-o {
+      width: 6.54481rem;
+      height: 7.03531rem;
+      margin: 0 5px;
+      object-fit: contain;
+
+      animation: ${rotate} 10s linear infinite;
+    }
+
+    .green-text {
+      color: #6ede65;
+      margin-left: 0.2em;
+    }
+  }
+
+  @media (max-width: 1200px) {
+    .big-title {
+      font-size: 13vw;
+      .flower-o {
+        width: 0.7em;
+        height: 0.75em;
+      }
+    }
   }
 `;
 
