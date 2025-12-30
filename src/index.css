@@ -1,5 +1,7 @@
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
 @import url("https://fonts.googleapis.com/css2?family=Bayon&display=swap");
+/* 맨 윗줄에 추가 */
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
 @font-face {
   font-family: "Cafe24 PRO Slim";
   src: url("/fonts/Cafe24PROSlimMax.woff2") format("woff2"),
