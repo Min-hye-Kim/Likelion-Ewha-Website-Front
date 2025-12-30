@@ -45,7 +45,7 @@ const CardWrapper = styled.div`
   align-items: center;
   width: 100%;
   max-width: 60.625rem;
-  min-height: 13.88rem;
+  max-height: 13.875rem;
   overflow: hidden;
 
   background: var(--static-white);
@@ -58,7 +58,7 @@ const CardWrapper = styled.div`
     flex-direction: column;
     align-items: start;
     min-width: 40rem;
-    min-height: auto;
+    max-height: none;
     height: auto;
   }
 
@@ -90,17 +90,15 @@ const CardImage = styled.img`
 
 const CardText = styled.div`
   flex: 1;
-  height: 100%;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
-
-  gap: 1.18rem;
+  align-items: space-between;
+  gap: 0.75rem;
 
   flex-shrink: 0;
-  padding: 1.94rem 1.75rem;
+  padding: 1.25rem 1.75rem;
 
   text-align: left;
 
