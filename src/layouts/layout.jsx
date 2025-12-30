@@ -90,7 +90,7 @@ const DesktopSidebar = styled.aside`
 const MainArea = styled.main`
   flex: 1;
   background: #fff;
-  padding: 20px;
+
   min-width: 0;
 `;
 
