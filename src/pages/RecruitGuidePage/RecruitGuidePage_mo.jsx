@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import TopBar from "../components/navigation/topbar";
-import BottomBar from "../components/navigation/bottombar"
-import DropDown3 from "../components/dropdown/Dropdown3"
+import TopBar from "../../components/navigation/topbar";
+import BottomBar from "../../components/navigation/bottombar"
+import DropDown3 from "../../components/dropdown/Dropdown3"
 import RecruitGuideHeroMo from "./RecruitGuideHero_mo";
 import {
     ApplyButtonMobile,
     DetailLinkButtonMobile,
-} from "../components/buttons/MainButtons_mo";
+} from "../../components/buttons/MainButtons_mo";
 
 
 const RecruitGuidePageMo = () => {

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import {
     ApplyBlackButtonMobile,
     DetailLinkDarkButtonMobile,
-} from "../components/buttons/MainButtons_mo"; 
+} from "../../components/buttons/MainButtons_mo"; 
 
 const RecruitGuideHeroMo = () => {
     return (

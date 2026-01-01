@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import RecruitGuidePageMo from "./RecruitGuidePage_mo";
-import RecruitGuidePagePc from "./RecruitGuidePage/RecruitGuidePage_pc";
+import RecruitGuidePagePc from "./RecruitGuidePage_pc";
 
 const BREAKPOINT = 800;
 
