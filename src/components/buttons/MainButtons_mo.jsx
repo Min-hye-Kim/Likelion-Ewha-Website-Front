@@ -39,7 +39,7 @@ export const DisabledSubmitButtonMobile = (props) => (
 export const RecruitInfoButtonMobile = (props) => (
     <DefaultButton {...props}>
         <span>14기 모집 안내 바로가기</span>
-        <img src="/icons/arrowRight_2.svg" />
+        <img src="/icons/arrowRight2.svg" />
     </DefaultButton>
 );
 
@@ -113,7 +113,7 @@ const DefaultButton = styled(BaseButton)`
     width: 12.34375rem;
     height: 2rem;
     padding: 0.5625rem 1.125rem;
-    background-color: #cfcfcf;
+    background-color: #474747;
     color: #ffffff;
     border: none;
     gap: 0.25rem;
