@@ -13,6 +13,7 @@ const SUBMIT_BOTTOM_GAP = 160;
 
 const isFilled = (v) => v.trim().length > 0;
 
+//코드 생성(임시)
 const makeSubmitCode = () => {
   const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
   let out = "";
@@ -37,7 +38,7 @@ function useIsMobile(maxWidth = 799) {
     setIsMobile(mq.matches);
 
     return () => {
-      if (mq.removeEventListener) mq.removeEventListener("change", onChange);
+      if (mq.removeEventListener) mq.removeEventListener("keydown", onChange);
       else mq.removeListener(onChange);
     };
   }, [maxWidth]);
@@ -379,19 +380,19 @@ export default function Apply2() {
                       <HiddenFileInput ref={precourseRef} type="file" multiple onChange={onPickFiles(setPrecourseFiles)} />
                     </EtcTop>
 
-                    <FileList>
-                      {Array.from({ length: FILE_LIMIT }).map((_, idx) => {
-                        const f = precourseFiles[idx] ?? null;
-                        return (
+                    {/* pr 리뷰 수정 반영: 파일 업로드 전에는 리스트를 렌더링하지 않음 */}
+                    {precourseFiles.length > 0 && (
+                      <FileList>
+                        {precourseFiles.map((f, idx) => (
                           <FileRow key={`pre-${idx}`}>
-                            <FileName className="body-regular">{f ? f.name : "파일명 파일명"}</FileName>
-                            <TrashButton type="button" disabled={!f} onClick={() => f && removeFileAt(setPrecourseFiles, idx)}>
+                            <FileName className="body-regular">{f.name}</FileName>
+                            <TrashButton type="button" onClick={() => removeFileAt(setPrecourseFiles, idx)}>
                               <img src="/icons/trash.svg" alt="" />
                             </TrashButton>
                           </FileRow>
-                        );
-                      })}
-                    </FileList>
+                        ))}
+                      </FileList>
+                    )}
                   </EtcItem>
 
                   <EtcItem>
@@ -407,22 +408,27 @@ export default function Apply2() {
                       <AddFileButton type="button" onClick={() => portfolioRef.current?.click()}>
                         파일 추가
                       </AddFileButton>
-                      <HiddenFileInput ref={portfolioRef} type="file" multiple onChange={onPickFiles(setPortfolioFiles)} />
+                      <HiddenFileInput
+                        ref={portfolioRef}
+                        type="file"
+                        multiple
+                        onChange={onPickFiles(setPortfolioFiles)}
+                      />
                     </EtcTop>
 
-                    <FileList>
-                      {Array.from({ length: FILE_LIMIT }).map((_, idx) => {
-                        const f = portfolioFiles[idx] ?? null;
-                        return (
+                    {/* ✅ 수정: 파일 업로드 전에는 리스트를 렌더링하지 않음 */}
+                    {portfolioFiles.length > 0 && (
+                      <FileList>
+                        {portfolioFiles.map((f, idx) => (
                           <FileRow key={`port-${idx}`}>
-                            <FileName className="body-regular">{f ? f.name : "파일명 파일명"}</FileName>
-                            <TrashButton type="button" disabled={!f} onClick={() => f && removeFileAt(setPortfolioFiles, idx)}>
+                            <FileName className="body-regular">{f.name}</FileName>
+                            <TrashButton type="button" onClick={() => removeFileAt(setPortfolioFiles, idx)}>
                               <img src="/icons/trash.svg" alt="" />
                             </TrashButton>
                           </FileRow>
-                        );
-                      })}
-                    </FileList>
+                        ))}
+                      </FileList>
+                    )}
                   </EtcItem>
                 </EtcGroup>
               </CardInner>
