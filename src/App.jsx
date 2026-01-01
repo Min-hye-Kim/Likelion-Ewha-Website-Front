@@ -9,6 +9,8 @@ function App() {
       <Route element={<Layout />}>
         {/* Home */}
         <Route index element={<Home />} />
+        {/* HomeMid 프리뷰용 임시 라우터 */}
+        <Route path="project-mid" element={<HomeMid />} />
 
         {/* Public pages */}
         <Route path="project" element={<div>PROJECT</div>} />
