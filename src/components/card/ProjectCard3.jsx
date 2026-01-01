@@ -54,7 +54,7 @@ const CardWrapper = styled.div`
 
   transition: all 0.2s ease;
 
-  @media (max-width: 1032px) {
+  @media (max-width: 1233px) {
     flex-direction: column;
     align-items: start;
     min-width: 40rem;
@@ -77,7 +77,7 @@ const CardImage = styled.img`
 
   transition: all 0.2s ease;
  
-  @media (max-width: 1032px) {
+  @media (max-width: 1233px) {
     width: 100%;
     height: 13.875rem;
     align-self: auto;
@@ -104,7 +104,7 @@ const CardText = styled.div`
 
   transition: all 0.2s ease;
   
-  @media (max-width: 1032px) {
+  @media (max-width: 1233px) {
     flex-shrink: 1;
     padding: 1.25rem 1.75rem;
     gap: 0.75rem;
