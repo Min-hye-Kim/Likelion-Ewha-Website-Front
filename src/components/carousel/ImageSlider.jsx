@@ -1,22 +1,8 @@
 import React, { useRef, useState } from "react";
 import styled from "styled-components";
-import { Modal } from "../Modal"; // ⚠️ 경로 확인 필수 (예: ../components/Modal)
-import ContainerImg from "../../../public/icons/Container.svg";
+import { Modal } from "../Modal";
+import IMAGES from "../../data/news.json";
 
-const IMAGES = [
-  { id: 1, src: "/images/news/image1.png" },
-  { id: 2, src: "/images/news/image2.png" },
-  { id: 3, src: "/images/news/image3.png" },
-  { id: 4, src: "/images/news/image4.png" },
-  { id: 5, src: "/images/news/image5.png" },
-  { id: 6, src: "/images/news/image6.png" },
-  { id: 7, src: "/images/news/image7.png" },
-  { id: 8, src: "/images/news/image8.png" },
-  { id: 9, src: "/images/news/image9.png" },
-  { id: 10, src: "/images/news/image10.png" },
-  { id: 11, src: "/images/news/image11.jpg" }, // ⚠️ image11만 jpg입니다!
-  { id: 12, src: "/images/news/image12.png" },
-];
 const ImageSlider = () => {
   const sliderRef = useRef(null);
 
