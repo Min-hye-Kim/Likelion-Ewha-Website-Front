@@ -72,8 +72,7 @@ const EndSection = () => {
             </IconBox>
             <h2 className="title">REVIEW</h2>
             <p className="subtitle">
-              이대 멋사를 수료한 벗들의
-              <br />
+              이대 멋사를 수료한 벗들의 <br />
               솔직한 활동 후기
             </p>
             {/* PC용 더보기 버튼 (모바일에서 숨김) */}

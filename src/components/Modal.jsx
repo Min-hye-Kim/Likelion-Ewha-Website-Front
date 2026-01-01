@@ -307,7 +307,6 @@ const Overlay = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 24px;
   z-index: 9999;
 `;
 
@@ -321,7 +320,10 @@ const Dialog = styled.div`
     if ($size === "media") return "auto";
     return "29.6875rem"; //기본  ,
   }};
-
+  @media (max-width: 799px) {
+    width: calc(100% - 40px); /* 모바일 좌우 여백 확보 */
+    max-width: 25rem; /* 너무 커지는 것 방지 */
+  }
   /* 기본(일반 모달) */
   background: var(--common-100);
   border-radius: 1rem;
@@ -347,6 +349,11 @@ const CloseBtn = styled.button`
   border: none;
   background: transparent;
   cursor: pointer;
+
+  @media (max-width: 799px) {
+    top: 1.5rem;
+    right: 1.5rem;
+  }
 `;
 
 const Wrap = styled.div`
@@ -355,6 +362,12 @@ const Wrap = styled.div`
   display: flex;
   flex-direction: column;
   align-items: ${({ $align }) => ($align === "left" ? "flex-start" : "center")};
+
+  /* 모바일 패딩 조정 */
+  @media (max-width: 799px) {
+    padding: ${({ $type, $isImageOnly }) =>
+      $type === "image" && $isImageOnly ? "0" : "2rem 1.5rem"};
+  }
 `;
 
 const Header = styled.div`
@@ -368,12 +381,23 @@ const Header = styled.div`
 const Title = styled.h2`
   margin: 0;
   color: var(--neutral-20);
+
+  word-break: keep-all;
+  word-wrap: break-word;
+
+  padding-right: 2rem;
+
+  @media (max-width: 799px) {
+    font-size: 1.25rem;
+    padding-right: 1.5rem;
+  }
 `;
 
 const Desc = styled.p`
   margin: 0;
   color: var(--neutral-50);
-  white-space: pre-line;
+  word-break: keep-all;
+  line-height: 1.5;
 `;
 
 const Body = styled.div`
