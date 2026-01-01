@@ -20,6 +20,7 @@ function Input({
   endIcon,
   value,
   onChange,
+  width,
 }) {
   const [isFocused, setIsFocused] = useState(false);
   const inputId = useId();
@@ -48,7 +49,7 @@ function Input({
       )}
 
       {/* ---------------- Input Box ---------------- */}
-      <InputBox $variant={variant} $state={inputState} $multiline={multiline}>
+      <InputBox $variant={variant} $state={inputState} $multiline={multiline} $width={width}>
         {startIcon && <Icon>{startIcon}</Icon>}
 
         {multiline ? (
@@ -148,6 +149,8 @@ const InputBox = styled.div`
   background: #F4F4F5;
   border-color: #F4F4F5;
 
+  width: ${({ $width }) => $width || 'auto'};
+
   ${({ $variant, $state }) => {
 
     /* ---------- code (Text Inputs 1) ---------- */
@@ -159,12 +162,10 @@ const InputBox = styled.div`
       }
       return css`
         border: 1px solid #F4F4F5;
-        width: 395px;
         height: 52px;
         padding: 12px 24px;
         font-size: 16px;
           @media (max-width: 799px) { /* 모바일 */
-            width: 320px;
             height: 40px;
           }
       `;
@@ -174,11 +175,9 @@ const InputBox = styled.div`
     if ($variant === 'form') {
       return css`
         border: 1px solid #F4F4F5;
-        width: 535px;
         height: 46px;
         padding: 12px 20px;
           @media (max-width: 799px) { /* 모바일 */
-            width: 316px;
             height: 36px;
           }
       `;
