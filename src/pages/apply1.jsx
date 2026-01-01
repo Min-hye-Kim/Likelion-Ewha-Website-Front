@@ -724,7 +724,7 @@ const Card = styled.div`
   padding: 2.5rem 3.25rem 2.5rem 3.25rem ;
   align-items: center;
   align-self: stretch;
-  border-radius: 4px;
+  border-radius: 1rem;
   border: 1px solid var(--neutral-95, #dcdcdc);
   background: var(--static-white, #fff);
 
@@ -884,19 +884,24 @@ const ButtonRowPC = styled.div`
   flex-grow: 1;
   gap: 24px;
   margin : 0.75rem 0 2rem 0;
+
+  & > button {
+    flex: 1;
+    width: 0;
+  }
 `;
 
 const ButtonRowMobile = styled.div`
-  max-width: 799px;
-  width : 100% !important;
-  white-space: nowrap;
-
+  width: 100%;
   display: flex;
   flex-direction: row;
-  flex-grow: 1;
-
-  gap: 4px;
+  gap: 8px;
   margin-top: 4px;
+
+  & > button {
+    flex: 1;
+    width: 0;
+  }
 `;
 
 const TimeSection = styled.div`
