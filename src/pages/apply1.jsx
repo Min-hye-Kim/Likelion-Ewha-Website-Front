@@ -104,7 +104,8 @@ export default function Apply1() {
   const isMajorValid = major.trim().length > 0;
   const isStudentIdValid = studentId.trim().length > 0;
   const isGradeValid = grade.trim().length > 0;
-  const isPhoneValid = /^01[04789]-?\d{3,4}-?\d{4}$/.test(phone);
+  const isPhoneValid = /^01[0]-\d{4}-\d{4}$/.test(phone);
+// 일단 010-XXXX-XXXX 형식으로만 검사하도록 했는데 설마...,, 외국인 번호나 뭐 다른 번호 같은 것도 고려해야 하는지...,,?
   const isInterviewTypeValid = !!interviewType;
   const isPrivacyValid = !!privacyAgree;
   const isTimeValid = Object.values(selectedTimes).some(arr => Array.isArray(arr) && arr.length > 0);
