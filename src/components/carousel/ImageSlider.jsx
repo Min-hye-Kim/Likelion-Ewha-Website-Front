@@ -5,50 +5,34 @@ import IMAGES from "../../data/news.json";
 
 const ImageSlider = () => {
   const sliderRef = useRef(null);
-
-  // 드래그 상태 관리
-  const [isDown, setIsDown] = useState(false); // 마우스를 누르고 있는지
+  const [isDown, setIsDown] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
-
-  // 드래그 판별용
   const dragDistance = useRef(0);
-
-  // 모달 상태
   const [selectedImg, setSelectedImg] = useState(null);
 
-  // 1. 마우스 누름 (시작)
   const handleMouseDown = (e) => {
     setIsDown(true);
     setStartX(e.pageX - sliderRef.current.offsetLeft);
     setScrollLeft(sliderRef.current.scrollLeft);
-    dragDistance.current = 0; // 누를 때 이동거리 초기화
+    dragDistance.current = 0;
   };
 
-  // 2. 마우스 뗌 or 벗어남 (종료)
   const handleMouseUpOrLeave = () => {
     setIsDown(false);
   };
 
-  // 3. 마우스 움직임 (스크롤 & 거리 계산)
   const handleMouseMove = (e) => {
     if (!isDown) return;
     e.preventDefault();
-
     const x = e.pageX - sliderRef.current.offsetLeft;
-    const walk = (x - startX) * 1.5; // 스크롤 속도
+    const walk = (x - startX) * 1.5;
     sliderRef.current.scrollLeft = scrollLeft - walk;
-
-    //  움직인 거리 누적 계산 (절대값)
     dragDistance.current += Math.abs(walk);
   };
 
-  //  4. 이미지 클릭 핸들러 (드래그인지 클릭인지 판별)
   const handleImageClick = (src) => {
-    // 움직인 거리가 5px 미만이면 "클릭"으로 인정
-    // 5px 이상이면 "드래그"로 간주하고 모달 안 염
     if (dragDistance.current > 5) return;
-
     setSelectedImg(src);
   };
 
@@ -64,17 +48,15 @@ const ImageSlider = () => {
         onMouseLeave={handleMouseUpOrLeave}
         onMouseUp={handleMouseUpOrLeave}
         onMouseMove={handleMouseMove}
-        $isDragging={isDown} // 스타일링용
+        $isDragging={isDown}
       >
         {IMAGES.map((item) => (
           <ImageCard key={item.id} onClick={() => handleImageClick(item.src)}>
-            {/* 3. 회색 박스(placeholder)는 지우고 실제 이미지 태그 사용 */}
             <img src={item.src} alt={`slide-${item.id}`} />
           </ImageCard>
         ))}
       </SliderContainer>
 
-      {/* 미디어 모달 */}
       <Modal
         open={Boolean(selectedImg)}
         onClose={closeModal}
@@ -90,20 +72,25 @@ const ImageSlider = () => {
 
 export default ImageSlider;
 
-// --- 스타일 정의 (기존과 동일) ---
+// --- 스타일 정의 ---
 
 const SliderContainer = styled.div`
   display: flex;
   gap: 1.25rem;
-  padding: 0 20px;
   width: 100%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  margin-top: -20px;
+  margin-bottom: -20px;
 
   overflow-x: auto;
 
-  /* 마우스 누르고 있을 때만 grabbing(주먹) */
+  /* 드래그 커서 설정 */
   cursor: ${(props) => (props.$isDragging ? "grabbing" : "grab")};
 
-  /* 드래그 중엔 스냅 끄기 -  부드러움 */
   scroll-snap-type: ${(props) => (props.$isDragging ? "none" : "x mandatory")};
   scroll-behavior: ${(props) => (props.$isDragging ? "auto" : "smooth")};
 
@@ -112,27 +99,28 @@ const SliderContainer = styled.div`
   }
   -ms-overflow-style: none;
   scrollbar-width: none;
-  user-select: none; /* 텍스트 선택 방지 */
+  user-select: none;
 `;
 
 const ImageCard = styled.div`
-  /*  PC */
+  /* PC 사이즈 */
   width: 15rem;
   height: 15rem;
 
   flex-shrink: 0;
   border-radius: 1rem;
   overflow: hidden;
+
   scroll-snap-align: start;
   background: var(--Neutral-95, #dcdcdc);
 
+  /* 호버 효과 */
   transition: transform 0.2s;
   &:hover {
     transform: scale(1.02);
   }
 
-  /*  모바일 */
-  @media (max-width: 768px) {
+  @media (max-width: 799px) {
     width: 7.5rem;
     height: 7.5rem;
     border-radius: var(--unit-12, 0.75rem);
@@ -143,13 +131,6 @@ const ImageCard = styled.div`
     height: 100%;
     object-fit: cover;
     display: block;
-    pointer-events: none; /* 이미지 자체 드래그 방지 */
-  }
-
-  .placeholder {
-    width: 100%;
-    height: 100%;
-    background: var(--Neutral-95, #dcdcdc);
-    position: relative;
+    pointer-events: none;
   }
 `;
