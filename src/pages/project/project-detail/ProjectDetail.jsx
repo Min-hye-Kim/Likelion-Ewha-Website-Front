@@ -79,12 +79,6 @@ function ProjectDetail() {
                                 tags={['AI', 'React', 'UX']}
                                 styleType={1}
                             />
-                            <ProjectCard1
-                                project="AI 추천 서비스"
-                                description="사용자 상태 기반 맞춤 추천 프로젝트"
-                                tags={['AI', 'React', 'UX']}
-                                styleType={1}
-                            />
                         </ProjectGrid>
                     </MoreContent>
                 </Project>
@@ -96,11 +90,12 @@ function ProjectDetail() {
 export default ProjectDetail;
 
 const DetailWrapper = styled.div`
-    max-width: 1440px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    overflow-x: hidden;
 `
 
 const Thumbnail = styled.div`
@@ -109,8 +104,7 @@ const Thumbnail = styled.div`
     overflow: hidden;
 
     img {
-        width: auto;
-        height: 100%;
+        width: 100%;
         object-fit: cover;
         display: block;
     }
@@ -118,7 +112,6 @@ const Thumbnail = styled.div`
 
 const Container = styled.div`
     width: 100%;
-    max-width: 971px;
     display: flex;
     padding: 52px 80px 160px 80px;
     flex-direction: column;
@@ -132,7 +125,7 @@ const Container = styled.div`
 `
 
 const Project = styled.div`
-    width: 100%;
+    width: 971px;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -189,12 +182,10 @@ const Refer = styled.div`
 
 const ProjectImg = styled.div`
     width: 100%;
-    aspect-ratio: 971 / 800;
     overflow: hidden;
 
     img {
-        width: auto;
-        height: 100%;
+        width: 100%;
         object-fit: cover;
         display: block;
     }
@@ -237,6 +228,7 @@ const MoreContent = styled.div`
 `
 
 const ProjectGrid = styled.div`
+    width: 100%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
