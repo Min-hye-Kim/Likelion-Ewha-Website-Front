@@ -371,7 +371,7 @@ const OrangeArea = styled.div`
     }
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 799px) {
     padding-top: 60px;
     padding-bottom: 6rem;
     .news-header {
@@ -379,7 +379,6 @@ const OrangeArea = styled.div`
       align-items: center;
       text-align: center;
 
-      /* 🚨 텍스트 반응형 처리 (오타 수정 및 사이즈 조절) */
       .title {
         font-size: 2.5rem; /* 3rem -> 2.5rem */
       }
@@ -401,7 +400,7 @@ const SliderWrapper = styled.div`
   & > div {
     padding-left: 0 !important;
   }
-  @media (max-width: 768px) {
+  @media (max-width: 799px) {
     margin-top: -3.75rem;
     padding-left: 100px;
   }
@@ -421,7 +420,7 @@ const FooterSection = styled.section`
   min-height: 39.1875rem;
   padding: 5rem 18.5625rem;
 
-  @media (max-width: 768px) {
+  @media (max-width: 799px) {
     min-height: unset !important;
     height: auto !important;
     padding: 4.5rem 1rem 4rem 1rem;
@@ -439,7 +438,7 @@ const PatternTop = styled.img`
   left: 7.89888rem;
   top: -3.38275rem;
 
-  @media (max-width: 768px) {
+  @media (max-width: 799px) {
     width: 3.75rem;
     height: 3.75rem;
     left: 2.375rem;
@@ -455,7 +454,7 @@ const PatternBottom = styled.img`
   right: 0;
   top: 20.1875rem;
 
-  @media (max-width: 768px) {
+  @media (max-width: 799px) {
     width: 5.25rem;
     top: 13.25rem;
     right: 0;
@@ -516,7 +515,7 @@ const PcButtonArea = styled.div`
   margin-top: 3rem;
   margin-bottom: 1rem;
 
-  @media (max-width: 768px) {
+  @media (max-width: 799px) {
     display: none !important;
   }
 `;
@@ -528,7 +527,7 @@ const MobileButtonArea = styled.div`
   margin-bottom: 1rem;
   justify-content: center;
 
-  @media (max-width: 768px) {
+  @media (max-width: 799px) {
     display: flex !important;
   }
 `;
@@ -547,7 +546,7 @@ const SubLink = styled.a`
   &:hover u {
     color: #000;
   }
-  @media (max-width: 768px) {
+  @media (max-width: 799px) {
     font-size: 0.8rem;
   }
 `;
@@ -557,7 +556,7 @@ const EndText = styled.p`
   font-size: 0.9rem;
   font-weight: 500;
   margin-top: 0.25rem;
-  @media (max-width: 768px) {
+  @media (max-width: 799px) {
     font-size: 0.8rem;
   }
 `;

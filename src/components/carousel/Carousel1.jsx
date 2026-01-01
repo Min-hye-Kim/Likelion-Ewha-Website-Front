@@ -57,8 +57,7 @@ const Container = styled.div`
   height: 18.25863rem;
   margin: 50px auto;
 
-  /* 모바일 (Tablet 이하 768px 기준) */
-  @media (max-width: 768px) {
+  @media (max-width: 799px) {
     width: 19.97rem;
     height: 20.68rem;
     margin: 20px auto;
@@ -94,7 +93,7 @@ const NavButton = styled.button`
     height: 100%;
     object-fit: contain;
   }
-  @media (max-width: 768px) {
+  @media (max-width: 799px) {
     width: 1.875rem;
     height: 1.875rem;
 
@@ -128,7 +127,7 @@ const MainCard = styled(BaseCard)`
   flex-direction: column;
   justify-content: space-between;
 
-  @media (max-width: 768px) {
+  @media (max-width: 799px) {
     padding: 0.94rem 1.25rem;
   }
 `;
@@ -153,7 +152,7 @@ const DecoCard = styled(BaseCard)`
       : "translate(40px, -40px) scale(0.96)"};
 
   /* 1. 반응형에서는 DecoCard 숨기기 */
-  @media (max-width: 768px) {
+  @media (max-width: 799px) {
     display: none;
   }
 `;
@@ -168,7 +167,7 @@ const CardHeader = styled.h2`
   word-break: keep-all;
   white-space: pre-wrap;
 
-  @media (max-width: 768px) {
+  @media (max-width: 799px) {
     font-size: 1.25rem;
     line-height: 1.8rem;
     word-break: break-all;
