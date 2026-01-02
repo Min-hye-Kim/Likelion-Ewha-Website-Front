@@ -161,7 +161,7 @@ const EndSection = () => {
         description={
           "이화여대 멋쟁이사자처럼 카카오톡 채널을 통해\n모집이 시작되면 가장 먼저 알려드릴게요."
         }
-        align="center"
+        align="left"
         actions={[
           {
             label: "카카오톡 바로가기",
