@@ -11,9 +11,10 @@ function App() {
         <Route index element={<Home />} />
 
         {/* Public pages */}
-        <Route path="project" element={<div>PROJECT</div>} />
-        <Route path="people" element={<div>PEOPLE</div>} />
-        <Route path="recruit" element={<div>RECRUIT</div>} />
+        <Route path="project" element={<Project />} />
+        <Route path="project/detail" element={<ProjectDetail />} />
+        <Route path="people" element={<People />} />
+        <Route path="recruit" element={<RecruitGuidePage />} />
 
         {/* Sidebar (Admin) pages */}
         <Route path="applicant" element={<div>APPLICANT</div>} />
@@ -27,4 +28,4 @@ function App() {
   );
 }
 
-export default App
+export default App;

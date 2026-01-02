@@ -26,10 +26,12 @@ const Shell = styled.div`
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
+  width: 100%;
+  align-items: stretch;
 `;
 
 const MainArea = styled.main`
   flex: 1;
   background: #fff;
-  padding: 20px;
+  width: 100%;
 `;
