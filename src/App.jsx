@@ -5,6 +5,7 @@ import Apply2 from "./pages/apply2.jsx"
 import Project from './pages/project/Project.jsx';
 import ProjectDetail from './pages/project/project-detail/ProjectDetail.jsx';
 import People from './pages/people/People.jsx';
+import RecruitGuidePage from './pages/RecruitGuidePage/RecruitGuidePage_mo.jsx';
 
 function App() {
   return (
