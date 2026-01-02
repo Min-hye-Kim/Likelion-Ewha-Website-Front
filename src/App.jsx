@@ -1,7 +1,10 @@
 import { Routes, Route } from "react-router-dom";
 import Layout from "./layouts/layout.jsx";
 import Home from "./pages/hompage/Home.jsx";
-import Apply2 from "./pages/apply2.jsx";
+import Project from "./pages/project/Project.jsx";
+import ProjectDetail from "./pages/project/project-detail/ProjectDetail.jsx";
+import People from "./pages/people/People.jsx";
+import RecruitGuidePage from "./pages/RecruitGuidePage/RecruitGuidePage";
 
 function App() {
   return (
@@ -20,9 +23,6 @@ function App() {
         <Route path="applicant" element={<div>APPLICANT</div>} />
         <Route path="interview" element={<div>INTERVIEW</div>} />
         <Route path="application" element={<div>APPLICATION</div>} />
-
-        {/* apply pages */}
-        <Route path="apply/test" element={<Apply2 />} />
       </Route>
     </Routes>
   );
