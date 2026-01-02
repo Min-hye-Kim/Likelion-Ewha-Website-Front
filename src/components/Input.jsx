@@ -1,4 +1,4 @@
-import React, { useId, useState } from 'react';
+import React, { useId, useState, useRef, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 
 /* -------------------------------------------------------------------------- */
@@ -20,10 +20,29 @@ function Input({
   endIcon,
   value,
   onChange,
+  width,
+  textareaHeight,
+  autoResize=false, //textarea 전용
 }) {
   const [isFocused, setIsFocused] = useState(false);
   const inputId = useId();
   const hasValue = value !== undefined && value !== '';
+  const textareaRef = useRef(null);
+
+  //autoResize
+  const resizeTextarea = () => {
+    if (!textareaRef.current) return;
+
+    textareaRef.current.style.height = 'auto';
+    textareaRef.current.style.height =
+      `${textareaRef.current.scrollHeight}px`;
+  };
+
+  useEffect(() => {
+    if (multiline && autoResize) {
+      resizeTextarea();
+    }
+  }, [value, multiline, autoResize]);
 
   /** input 상태 */
   const inputState = error
@@ -48,18 +67,24 @@ function Input({
       )}
 
       {/* ---------------- Input Box ---------------- */}
-      <InputBox $variant={variant} $state={inputState} $multiline={multiline}>
+      <InputBox $variant={variant} $state={inputState} $multiline={multiline} $width={width}>
         {startIcon && <Icon>{startIcon}</Icon>}
 
         {multiline ? (
           <StyledTextArea
+            ref={textareaRef}
             id={inputId}
             placeholder={placeholder}
             value={value}
-            onChange={onChange}
+            onChange={(e) => {
+              onChange?.(e);
+              if (autoResize) resizeTextarea();
+            }}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
-          />
+            $height={textareaHeight}
+            $autoResize={autoResize}
+  />
         ) : (
           <StyledInput
             id={inputId}
@@ -148,6 +173,8 @@ const InputBox = styled.div`
   background: #F4F4F5;
   border-color: #F4F4F5;
 
+  width: ${({ $width }) => $width || '100%'};
+
   ${({ $variant, $state }) => {
 
     /* ---------- code (Text Inputs 1) ---------- */
@@ -159,12 +186,10 @@ const InputBox = styled.div`
       }
       return css`
         border: 1px solid #F4F4F5;
-        width: 395px;
         height: 52px;
         padding: 12px 24px;
         font-size: 16px;
           @media (max-width: 799px) { /* 모바일 */
-            width: 320px;
             height: 40px;
           }
       `;
@@ -174,11 +199,9 @@ const InputBox = styled.div`
     if ($variant === 'form') {
       return css`
         border: 1px solid #F4F4F5;
-        width: 535px;
         height: 46px;
         padding: 12px 20px;
           @media (max-width: 799px) { /* 모바일 */
-            width: 316px;
             height: 36px;
           }
       `;
@@ -188,7 +211,6 @@ const InputBox = styled.div`
     if ($variant === 'auth') {
       return css`
         border: 1px solid #F4F4F5;
-        width: 474px;
         height: 52px;
         padding: 14px 28px;
       `;
@@ -249,7 +271,9 @@ const StyledInput = styled.input`
 const StyledTextArea = styled.textarea`
   ${baseInputStyle}
   resize: none;
-  height: 266px;
+
+  height: ${({ $autoResize, $height }) =>
+    $autoResize ? 'auto' : $height || '266px'};
 `;
 
 /* -------------------------------- Icon -------------------------------- */
