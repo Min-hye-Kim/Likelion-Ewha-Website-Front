@@ -385,6 +385,7 @@ const Title = styled.h2`
   word-break: keep-all;
   word-wrap: break-word;
 
+  font-size: 1.5rem;
   padding-right: 2rem;
 
   @media (max-width: 799px) {
@@ -609,19 +610,24 @@ const ActionBtn = styled.button`
   white-space: nowrap;
 
   min-width: 11.5rem;
-  height: 3.25rem;
+  height: 3.5rem;
   padding: 0.875rem 2.5rem;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
 
   border-radius: 62.4375rem;
   cursor: pointer;
   font-weight: 700;
   flex: ${({ $fullWidth }) => ($fullWidth ? "1" : "0")};
 
-  @media (max-width: 560px) {
+  @media (max-width: 799px) {
     min-width: 0;
     flex: 1 1 0;
     max-width: 100%;
-    padding: 0.875rem 1.25rem; /* 필요하면 유지/조절 */
+    padding: 0.625rem 2.5rem; /* 필요하면 유지/조절 */
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.5rem;
   }
 
   border: 1px solid

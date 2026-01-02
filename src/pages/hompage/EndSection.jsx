@@ -161,7 +161,7 @@ const EndSection = () => {
         description={
           "이화여대 멋쟁이사자처럼 카카오톡 채널을 통해\n모집이 시작되면 가장 먼저 알려드릴게요."
         }
-        align="center"
+        align="left"
         actions={[
           {
             label: "카카오톡 바로가기",
@@ -234,24 +234,31 @@ const InnerContainer = styled.div`
 `;
 
 const IconBox = styled.div`
-  margin-bottom: 0.5rem;
   img {
     width: 2rem;
     height: 2rem;
     object-fit: contain;
+
+    @media (max-width: 799px) {
+      width: 1.25rem;
+      height: 1.34369rem;
+    }
   }
 `;
 
 /* --- [1] Green Area --- */
 const GreenArea = styled.div`
   background: #98fba4;
-  padding: 80px 0;
+  padding: 3.75rem 5rem;
   overflow: hidden;
+
+  @media (max-width: 799px) {
+    padding: 2rem 1rem;
+  }
 
   & > div {
     gap: 4rem;
     @media (max-width: 799px) {
-      /* 모바일에서 세로 정렬하되 순서는 order로 제어 */
       flex-direction: column;
       gap: 1.5rem;
       text-align: center;
@@ -282,7 +289,6 @@ const GreenArea = styled.div`
       font-family: Bayon;
       font-size: 3rem;
       line-height: 2.875rem;
-      margin-bottom: 0.5rem;
     }
     .subtitle {
       font-family: "Cafe24 PRO Slim";
@@ -293,10 +299,11 @@ const GreenArea = styled.div`
     }
     @media (max-width: 799px) {
       .title {
-        font-size: 2.5rem;
+        font-size: 1.875rem;
+        line-height: 2.5rem;
       }
       .subtitle {
-        font-size: 1rem; /* 1.5rem -> 1rem 축소 */
+        font-size: 1rem;
         line-height: 1.5rem;
       }
       .subtitle br {
@@ -320,6 +327,12 @@ const MoreButton = styled.button`
   font-weight: 700;
   line-height: 1.75rem;
   cursor: pointer;
+  @media (max-width: 799px) {
+    padding: 0.625rem 1.75rem;
+    font-size: 0.875rem;
+    line-height: 1.375rem;
+    margin-top: 0;
+  }
 `;
 
 /* PC용 버튼 (모바일 숨김) */
@@ -341,7 +354,7 @@ const MobileMoreButtonWrapper = styled.div`
 /* --- [2] Orange Area--- */
 const OrangeArea = styled.div`
   background: #ffce8a;
-  padding-top: 80px;
+  padding-top: 5rem;
   padding-bottom: 11rem;
   display: flex;
   flex-direction: column;
@@ -371,7 +384,7 @@ const OrangeArea = styled.div`
   }
 
   @media (max-width: 799px) {
-    padding-top: 60px;
+    padding-top: 2rem;
     padding-bottom: 6rem;
     .news-header {
       padding-left: 0;
@@ -379,7 +392,8 @@ const OrangeArea = styled.div`
       text-align: center;
 
       .title {
-        font-size: 2.5rem; /* 3rem -> 2.5rem */
+        font-size: 1.875rem;
+        line-height: 2.5rem;
       }
       .subtitle {
         font-size: 1rem; /* 1.5rem -> 1rem */
