@@ -1,10 +1,10 @@
 import { Routes, Route } from "react-router-dom";
 import Layout from "./layouts/layout.jsx";
 import Home from "./pages/hompage/Home";
-import Project from './pages/project/Project.jsx';
-import ProjectDetail from './pages/project/project-detail/ProjectDetail.jsx';
-import People from './pages/people/People.jsx';
-import RecruitGuidePage from './pages/RecruitGuidePage/RecruitGuidePage';
+import Project from "./pages/project/Project.jsx";
+import ProjectDetail from "./pages/project/project-detail/ProjectDetail.jsx";
+import People from "./pages/people/People.jsx";
+import RecruitGuidePage from "./pages/RecruitGuidePage/RecruitGuidePage";
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
         {/* Public pages */}
         <Route path="project" element={<Project />} />
         <Route path="project/detail" element={<ProjectDetail />} />
-        <Route path="people" element={<People />} 
+        <Route path="people" element={<People />} />
         <Route path="recruit" element={<RecruitGuidePage />} />
 
         {/* Sidebar (Admin) pages */}
