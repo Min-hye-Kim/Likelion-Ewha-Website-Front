@@ -3,9 +3,13 @@ import DropDown1 from '/src/components/dropdown/Dropdown1';
 import MemberCard from '/src/components/card/MemberCard';
 import SegmentBar from '/src/components/SegmentBar';
 import { members } from '@/data';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function People() {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    });
+
     const [selectedGeneration, setSelectedGeneration] = useState('13기');
     const [selectedPart, setSelectedPart] = useState('전체');
 

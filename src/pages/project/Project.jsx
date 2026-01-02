@@ -12,6 +12,10 @@ const PAGE_BUTTON_LIMIT = 4; //페이지 네이션 4개씩
 function Project() {
     const navigate = useNavigate();
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    });
+
     const CATEGORY_MAP = {
         '전체': null,
         '해커톤': ['중앙아이디어톤', '중앙해커톤', '신촌SW창업경진대회', '여기톤'],

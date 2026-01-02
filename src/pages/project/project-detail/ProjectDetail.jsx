@@ -2,9 +2,15 @@ import styled from 'styled-components';
 import ProjectCard1 from '/src/components/card/ProjectCard1';
 import { projects } from '@/data';
 import { useParams, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 function ProjectDetail() {
     const { id } = useParams();
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [id]);
+
     const navigate = useNavigate();
     const projectList = projects.projects;
 
