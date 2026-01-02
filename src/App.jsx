@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Layout from "./layouts/layout.jsx";
-import Home from "./pages/Home.jsx";
-import Apply2 from "./pages/apply2.jsx"
+import Home from "./pages/hompage/Home.jsx";
+import Apply2 from "./pages/apply2.jsx";
 
 function App() {
   return (
@@ -22,7 +22,7 @@ function App() {
         <Route path="application" element={<div>APPLICATION</div>} />
 
         {/* apply pages */}
-        <Route path="apply/test" element={<Apply2/>} />
+        <Route path="apply/test" element={<Apply2 />} />
       </Route>
     </Routes>
   );
