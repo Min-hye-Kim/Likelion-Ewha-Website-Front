@@ -1,7 +1,11 @@
 import { Routes, Route } from "react-router-dom";
 import Layout from "./layouts/layout.jsx";
-import Home from "./pages/Home.jsx";
+import Home from './pages/hompage/Home.jsx';
 import Apply2 from "./pages/apply2.jsx"
+import Project from './pages/project/Project.jsx';
+import ProjectDetail from './pages/project/project-detail/ProjectDetail.jsx';
+import People from './pages/people/People.jsx';
+import RecruitGuidePage from './pages/RecruitGuidePage/RecruitGuidePage_mo.jsx';
 
 function App() {
   return (
@@ -12,7 +16,7 @@ function App() {
 
         {/* Public pages */}
         <Route path="project" element={<Project />} />
-        <Route path="project/detail" element={<ProjectDetail />} />
+        <Route path="project/detail/:id" element={<ProjectDetail />} />
         <Route path="people" element={<People />} />
         <Route path="recruit" element={<RecruitGuidePage />} />
 

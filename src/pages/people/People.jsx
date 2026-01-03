@@ -2,8 +2,32 @@ import styled from 'styled-components';
 import DropDown1 from '/src/components/dropdown/Dropdown1';
 import MemberCard from '/src/components/card/MemberCard';
 import SegmentBar from '/src/components/SegmentBar';
+import { members } from '@/data';
+import { useState, useEffect } from 'react';
 
 function People() {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    });
+
+    const [selectedGeneration, setSelectedGeneration] = useState('13기');
+    const [selectedPart, setSelectedPart] = useState('전체');
+
+    // 기수 필터 (공통)
+    const filteredByGeneration = members.members.filter(
+        m => m.generation === selectedGeneration
+    );
+
+    // 운영진
+    const managers = filteredByGeneration.filter(
+        m => m.role === '운영진'
+    );
+
+    // 파트 필터 (아기사자만)
+    const lions = filteredByGeneration
+    .filter(m => m.role === '아기사자')
+    .filter(m => selectedPart === '전체' || m.part === selectedPart);
+
     return (
         <PeopleWrapper>
             <Container>
@@ -12,79 +36,68 @@ function People() {
                     <p className='h5-regular' style={{ color: 'var(--Atomic-Neutral-20, var(--Neutral-20, #2A2A2A))', fontSize: '16px'}}>이화여대 멋쟁이사자처럼 운영진과 아기사자들을 소개합니다!</p>
                 </PeopleInfo>
 
+                {/* 기수 선택 */}
                 <DropDown1
                     options={['13기', '12기', '11기', '10기']}
                     defaultValue={'13기'}
-                    onSelect={(value) => console.log('선택:', value)}
+                    onSelect={(value) => setSelectedGeneration(value)}
                 />
 
-                <Lion>
-                    <p className='h3-bold' style={{ color: 'var(--Atomic-Neutral-30, var(--Neutral-30, #474747))', textAlign: 'center'}}>운영진</p>
-                    <p className='h5-regular' style={{ color: 'var(--Atomic-Neutral-50, var(--Neutral-50, #737373))', fontSize: '16px', marginBottom: '32px'}}>이화여대 멋쟁이사자처럼 00기 운영진입니다.</p>
-                    <LionCardGrid>
-                        <MemberCard
-                            name='서예린'
-                            part='프론트엔드'
-                            position='운영진'
-                            department='컴퓨터공학과 25'
-                            imageScr='../../images/default1.png'
-                        />
-                        <MemberCard
-                            name='서예린'
-                            part='프론트엔드'
-                            position='운영진'
-                            department='컴퓨터공학과 25'
-                            imageScr='../../images/default1.png'
-                        />
-                        <MemberCard
-                            name='서예린'
-                            part='프론트엔드'
-                            position='운영진'
-                            department='컴퓨터공학과 25'
-                            imageScr='../../images/default1.png'
-                        />
-                        <MemberCard
-                            name='서예린'
-                            part='프론트엔드'
-                            position='운영진'
-                            department='컴퓨터공학과 25'
-                            imageScr='../../images/default1.png'
-                        />
-                    </LionCardGrid>
-                </Lion>
+                {/* 운영진 */}
+                {managers.length > 0 && (
+                    <Lion>
+                        <p className='h3-bold' style={{ color: '#474747', textAlign: 'center'}}>운영진</p>
+                        <p className='h5-regular' style={{ color: '#737373', fontSize: '16px', marginBottom: '32px'}}>
+                            {selectedGeneration} 운영진입니다.
+                        </p>
+                        <LionCardGrid>
+                            {managers.map(m => (
+                                <MemberCard
+                                    key={m.id}
+                                    name={m.name}
+                                    part={m.part}
+                                    position={m.role}
+                                    department={m.department}
+                                    imageSrc={m.photo || '/images/default1.png'}
+                                    showPosition
+                                />
+                            ))}
+                        </LionCardGrid>
+                    </Lion>
+                )}
 
-                <Lion>
-                    <p className='h3-bold' style={{ color: 'var(--Atomic-Neutral-30, var(--Neutral-30, #474747))', textAlign: 'center', marginTop: '40px'}}>아기사자</p>
-                    <p className='h5-regular' style={{ color: 'var(--Atomic-Neutral-50, var(--Neutral-50, #737373))', fontSize: '16px', marginBottom: '24px'}}>이화여대 멋쟁이사자처럼 00기 기획디자인 아기사자입니다.</p>
-                    <SegmentBar
-                        items={['기획•디자인', '프론트엔드', '백엔드']}
-                                        styleType={1}
-                                        onSelect={(index, item) => setCategory(item)}
+                {/* 아기사자 */}
+                {lions.length > 0 && (
+                    <Lion>
+                        <p className='h3-bold' style={{ color: '#474747', textAlign: 'center', marginTop: '40px'}}>아기사자</p>
+                        <p className='h5-regular' style={{ color: '#737373', fontSize: '16px', marginBottom: '24px'}}>
+                            {selectedGeneration} 아기사자입니다.
+                        </p>
+
+                        {/* 파트 필터 */}
+                        <SegmentBar
+                            items={['전체', '기획•디자인', '프론트엔드', '백엔드']}
+                            styleType={1}
+                            onSelect={(index, item) => setSelectedPart(item)}
+                        />
+
+                        <LionCardGrid style={{ marginTop: '60px'}}>
+                            {lions
+                                .filter(m => selectedPart === '전체' || m.part === selectedPart)
+                                .map(m => (
+                                    <MemberCard
+                                        key={m.id}
+                                        name={m.name}
+                                        part={m.part}
+                                        department={m.department}
+                                        imageSrc={m.photo || '/images/default1.png'}
+                                        showPosition={false}
                                     />
-                    <LionCardGrid style={{ marginTop: '60px'}}>
-                        <MemberCard
-                            name='서예린'
-                            part='프론트엔드'
-                            department='컴퓨터공학과 25'
-                            imageScr='../../images/default1.png'
-                            showPosition='false'
-                        />
-                        <MemberCard
-                            name='서예린'
-                            part='프론트엔드'
-                            department='컴퓨터공학과 25'
-                            imageScr='../../images/default1.png'
-                            showPosition='false'
-                        />
-                        <MemberCard
-                            name='서예린'
-                            part='프론트엔드'
-                            department='컴퓨터공학과 25'
-                            imageScr='../../images/default1.png'
-                            showPosition='false'
-                        />
-                    </LionCardGrid>
-                </Lion>
+                                ))
+                            }
+                        </LionCardGrid>
+                    </Lion>
+                )}
             </Container>
 
             <Design1><img src='/icons/designOrange.svg' /></Design1>
@@ -160,20 +173,25 @@ const LionCardGrid = styled.div`
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
 
-    /* 380px 미만: 1줄 */
-    @media (max-width: 379px) {
+    /*  1줄 */
+    @media (min-width: 320px) and (max-width: 349px) {
         grid-template-columns: 1fr;
         gap: 16px;
     }
 
-    /* 380px ~ 649px: 2줄 */
-    @media (min-width: 380px) and (max-width: 970px) {
+    /*  2줄 */
+    @media (min-width: 350px) and (max-width: 519px) {
         grid-template-columns: repeat(2, 1fr);
         gap: 16px;
     }
 
-    /* 971px 이상: 3줄 */
-    @media (min-width: 971px) {
+    @media (min-width: 520px) and (max-width: 799px) {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+    }
+
+    /* 3줄 */
+    @media (min-width: 800px) {
         grid-template-columns: repeat(3, 1fr);
     }
 `
