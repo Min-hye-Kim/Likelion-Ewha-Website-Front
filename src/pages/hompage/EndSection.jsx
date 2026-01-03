@@ -252,25 +252,47 @@ const GreenArea = styled.div`
   padding: 3.75rem 5rem;
   overflow: hidden;
 
+  @media (min-width: 800px) and (max-width: 1019px) {
+    padding: 3rem 1rem;
+  }
+
   @media (max-width: 799px) {
     padding: 2rem 1rem;
   }
 
   & > div {
     gap: 4rem;
+
+    @media (min-width: 800px) and (max-width: 1019px) {
+      gap: 0;
+      flex-direction: column;
+      max-width: 650px !important;
+      margin: 0 auto;
+      align-items: stretch;
+    }
+
     @media (max-width: 799px) {
       flex-direction: column;
       gap: 1.5rem;
       text-align: center;
+      align-items: center;
     }
   }
 
-  /* 1. 캐러셀 */
+  /* 1. 캐러셀 박스 */
   .carousel-box {
     flex-shrink: 0;
+
+    @media (min-width: 800px) and (max-width: 1019px) {
+      width: 100% !important;
+      display: flex;
+      justify-content: center;
+    }
+
     @media (max-width: 799px) {
-      order: 2; /* 텍스트(1) 다음 */
+      order: 2; /* 텍스트 아래로 */
       margin-bottom: 0.5rem;
+      width: 100%;
     }
   }
 
@@ -278,11 +300,18 @@ const GreenArea = styled.div`
   .text-box {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: flex-start; /* PC 기본값: 왼쪽 정렬 */
+
+    @media (min-width: 800px) and (max-width: 1019px) {
+      width: 100% !important;
+      align-items: flex-start !important; /* 왼쪽 정렬 강제 */
+      text-align: left;
+      padding: 0 !important;
+    }
 
     @media (max-width: 799px) {
-      order: 1; /* 제일 위로 */
-      align-items: center;
+      order: 1; /* 캐러셀 위로 */
+      align-items: center; /* 가운데 정렬 */
     }
 
     .title {
@@ -297,6 +326,7 @@ const GreenArea = styled.div`
       font-weight: 700;
       line-height: 2.25rem;
     }
+
     @media (max-width: 799px) {
       .title {
         font-size: 1.875rem;
