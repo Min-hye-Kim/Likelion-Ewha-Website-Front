@@ -572,11 +572,14 @@ const LogoWrapper = styled.div`
 
   @media (max-width: 799px) {
     .big-title {
-      flex-direction: column;
+      flex-direction: row;
       font-size: 13vw;
+      gap: 0.2em;
+
       .flower-o {
         width: 0.7em;
         height: 0.75em;
+        margin: 0 0.1em;
       }
     }
   }
