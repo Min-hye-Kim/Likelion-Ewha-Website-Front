@@ -144,7 +144,7 @@ function Project() {
                     <PageBtn
                         className='h5-bold'
                         key={page}
-                        active={page === currentPage}
+                        $active={page === currentPage}
                         onClick={() => handlePageChange(page)}
                     >
                         {page}
@@ -290,8 +290,8 @@ const PageBtn = styled.button`
     align-items: center;
     border-radius: 4px;
     border: none;
-    background: ${({ active }) => (active ? 'var(--Cool-Neutral-98, #F4F4F5)' : 'transparent')};
-    color: ${({ active }) => (active ? 'var(--Neutral-20)' : 'var(--Neutral-70, #9B9B9B)')};
+    background: ${({ $active }) => ($active ? 'var(--Cool-Neutral-98, #F4F4F5)' : 'transparent')};
+    color: ${({ $active }) => ($active ? 'var(--Neutral-20)' : 'var(--Neutral-70, #9B9B9B)')};
     cursor: pointer;
 
     &:disabled {
