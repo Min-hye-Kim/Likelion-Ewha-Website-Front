@@ -49,12 +49,12 @@ const CardWrapper = styled.div`
   transition: all 0.2s ease;
 
   @media (max-width: 1129px) {
+    min-width: 0;
     width: 100%;
   }
 
   @media (max-width: 799px) {
     width: 100%;
-    min-width: 18rem;
     height: 17.125rem;
     gap: 1rem;
     border-radius: 0.75rem;
@@ -70,7 +70,6 @@ const CardImage = styled.img`
 
   @media (max-width: 799px) {
     height: 10rem;
-  }10rem;
   }
 `;
 
