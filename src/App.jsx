@@ -1,9 +1,9 @@
 import { Routes, Route } from "react-router-dom";
 import Layout from "./layouts/layout.jsx";
 import Home from "./pages/home/Home";
-import Project from './pages/project/Project.jsx';
-import ProjectDetail from './pages/project/project-detail/ProjectDetail.jsx';
-import People from './pages/people/People.jsx';
+import Project from "./pages/project/Project.jsx";
+import ProjectDetail from "./pages/project/project-detail/ProjectDetail.jsx";
+import People from "./pages/people/People.jsx";
 import RecruitGuidePage from "./pages/RecruitGuidePage/RecruitGuidePage";
 import RecruitPart from "./pages/recruit/RecruitPart.jsx";
 import Apply2 from "./pages/apply2.jsx";
@@ -32,7 +32,7 @@ function App() {
       </Route>
 
         {/* apply pages */}
-        <Route path="apply/test" element={<Apply2/>} />
+        <Route path="apply/test" element={<Apply2 />} />
 
         {/* Sidebar (Admin) pages */}
         <Route path="applicant" element={<div>APPLICANT</div>} />
