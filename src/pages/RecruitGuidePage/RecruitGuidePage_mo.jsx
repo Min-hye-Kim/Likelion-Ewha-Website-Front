@@ -266,7 +266,6 @@ const RecruitGuidePageMo = () => {
                 <BannerText>빛나는 내일, 이대 멋사와 함께하세요!</BannerText>
                 <ButtonGroup>
                     <ApplyButtonMobile />
-                    <DetailLinkButtonMobile />
                 </ButtonGroup>
                 <SubText>
                 지원서를 제출하셨나요? <span>지원서 열람하기</span>

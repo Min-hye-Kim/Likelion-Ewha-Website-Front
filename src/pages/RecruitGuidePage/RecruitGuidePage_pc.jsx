@@ -255,7 +255,6 @@ const RecruitGuidePagePc = () => {
                         <h2>빛나는 내일, 이대 멋사와 함께하세요!</h2>
                         <BannerButtons>
                             <ApplyWhiteButton/>
-                            <DetailLinkButton/>
                         </BannerButtons>
                         <CheckLinkText>
                             지원서를 제출하셨나요?<span onClick={() => {/* 열람 로직 */}}>지원서 열람하기</span>
@@ -327,10 +326,8 @@ const ScheduleCards = styled.div`
     width: 100%;
     justify-content: center;
 
-    /* 1. 1126px 이상: 4개가 한 줄 */
     grid-template-columns: repeat(4, 14.25rem);
 
-    /* 2. 870px ~ 1125px: 위 3개, 아래 중간에 1개 */
     @media (max-width: 1125px) and (min-width: 870px) {
         grid-template-columns: repeat(3, 14.25rem);
         
@@ -559,7 +556,6 @@ const PartCards = styled.div`
     
     justify-content: center; 
 
-    /* 1. 800px ~ 1075px: 카드 크기 고정 및 세로 1줄 */
     @media (min-width: 800px) and (max-width: 1075px) {
         grid-template-columns: 19.375rem;
         & > div {
@@ -568,14 +564,12 @@ const PartCards = styled.div`
         }
     }
 
-    /* 2. 1076px ~ 1416px: 위 2개 / 아래 1개 가운데 정렬 */
     @media (min-width: 1076px) {
         grid-template-columns: repeat(2, 19.375rem);
         
         width: fit-content;
         margin: 0 auto;
 
-        /* 세 번째 카드(백엔드) 처리 */
         & > div:nth-child(3) {
         grid-column: span 2;  
         justify-self: center; 
@@ -583,7 +577,6 @@ const PartCards = styled.div`
         }
     }
 
-    /* 3. 1417px 이상: 3개 한 줄 */
     @media (min-width: 1417px) {
         grid-template-columns: repeat(3, 19.375rem);
         width: fit-content;
