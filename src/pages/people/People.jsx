@@ -27,6 +27,7 @@ function People() {
     const lions = filteredByGeneration
     .filter(m => m.role === '아기사자')
     .filter(m => selectedPart === '전체' || m.part === selectedPart);
+    
 
     return (
         <PeopleWrapper>

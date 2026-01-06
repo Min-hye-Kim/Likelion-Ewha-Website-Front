@@ -115,11 +115,15 @@ const EndSection = () => {
         <FooterContent>
           <LogoWrapper>
             <div className="big-title">
-              <span>GRW</span>
-              <img src={Clover1Icon} alt="flower" className="flower-o" />
-              <span>
-                L TO <span className="green-text">WORLD!</span>
-              </span>
+              {/* 1. 윗줄 그룹 (GRW + 꽃 + L TO) */}
+              <div className="top-row">
+                <span>GRW</span>
+                <img src={Clover1Icon} alt="flower" className="flower-o" />
+                <span>L TO</span>
+              </div>
+
+              {/* 2. 아랫줄 (WORLD!) */}
+              <span className="green-text">WORLD!</span>
             </div>
           </LogoWrapper>
 
@@ -252,25 +256,49 @@ const GreenArea = styled.div`
   padding: 3.75rem 5rem;
   overflow: hidden;
 
+  @media (min-width: 800px) and (max-width: 1019px) {
+    padding: 3rem 1rem;
+  }
+
   @media (max-width: 799px) {
     padding: 2rem 1rem;
+  }
+  @media (max-width: 375px) {
+    padding: 2rem 0.5rem; /* 좌우 여백을 1rem -> 0.5rem으로 줄임 */
   }
 
   & > div {
     gap: 4rem;
+
+    @media (min-width: 800px) and (max-width: 1019px) {
+      gap: 0;
+      flex-direction: column;
+      max-width: 650px !important;
+      margin: 0 auto;
+      align-items: stretch;
+    }
+
     @media (max-width: 799px) {
       flex-direction: column;
-      gap: 1.5rem;
+      gap: 1rem;
       text-align: center;
+      align-items: center;
     }
   }
 
-  /* 1. 캐러셀 */
+  /* 1. 캐러셀 박스 */
   .carousel-box {
     flex-shrink: 0;
+
+    @media (min-width: 800px) and (max-width: 1019px) {
+      width: 100% !important;
+      display: flex;
+      justify-content: center;
+    }
+
     @media (max-width: 799px) {
-      order: 2; /* 텍스트(1) 다음 */
-      margin-bottom: 0.5rem;
+      order: 2; /* 텍스트 아래로 */
+      width: 100%;
     }
   }
 
@@ -278,11 +306,18 @@ const GreenArea = styled.div`
   .text-box {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: flex-start; /* PC 기본값: 왼쪽 정렬 */
+
+    @media (min-width: 800px) and (max-width: 1019px) {
+      width: 100% !important;
+      align-items: flex-start !important; /* 왼쪽 정렬 강제 */
+      text-align: left;
+      padding: 0 !important;
+    }
 
     @media (max-width: 799px) {
-      order: 1; /* 제일 위로 */
-      align-items: center;
+      order: 1; /* 캐러셀 위로 */
+      align-items: center; /* 가운데 정렬 */
     }
 
     .title {
@@ -297,6 +332,7 @@ const GreenArea = styled.div`
       font-weight: 700;
       line-height: 2.25rem;
     }
+
     @media (max-width: 799px) {
       .title {
         font-size: 1.875rem;
@@ -408,14 +444,12 @@ const SliderWrapper = styled.div`
   margin-top: -7.5rem;
   position: relative;
   z-index: 10;
+
   padding-left: max(20px, calc((100% - 1000px) / 2 + 20px));
-  overflow-x: visible;
-  & > div {
-    padding-left: 0 !important;
-  }
+
   @media (max-width: 799px) {
     margin-top: -3.75rem;
-    padding-left: 100px;
+    padding-left: clamp(16px, 20vw, 100px);
   }
 `;
 
@@ -483,7 +517,6 @@ const FooterContent = styled.div`
   text-align: center;
   width: 100%;
 `;
-
 const LogoWrapper = styled.div`
   width: auto;
   max-width: 100%;
@@ -495,29 +528,58 @@ const LogoWrapper = styled.div`
     color: #1a1a1a;
 
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
+    gap: 0.3em;
 
     flex-wrap: nowrap;
     white-space: nowrap;
+
+    /* [1] 윗줄 그룹 (GRW + 꽃 + L TO) */
+    .top-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+    }
 
     .flower-o {
       width: 6.54481rem;
       height: 7.03531rem;
       object-fit: contain;
       animation: ${rotate} 10s linear infinite;
+      margin: 0 5px;
     }
+
     .green-text {
       color: #6ede65;
     }
   }
 
-  @media (max-width: 1200px) {
+  @media (max-width: 1300px) {
     .big-title {
-      font-size: 13vw;
+      flex-direction: column;
+      gap: 0;
+      line-height: 1.1;
+
       .flower-o {
         width: 0.7em;
         height: 0.75em;
+      }
+    }
+  }
+
+  @media (max-width: 799px) {
+    .big-title {
+      flex-direction: row;
+      font-size: 13vw;
+      gap: 0.2em;
+
+      .flower-o {
+        width: 0.7em;
+        height: 0.75em;
+        margin: 0 0.1em;
       }
     }
   }
