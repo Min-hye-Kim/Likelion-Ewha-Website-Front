@@ -70,10 +70,7 @@ const RecruitGuidePageMo = () => {
                             </TargetMainDesc>
 
                             <TargetSubDesc>
-                                *지원 시 선수강 강의를 수강 완료한 화면 캡쳐본을 제출할 경우 가산점이 <br/>부여됩니다.
-                                <LinkButton href="https://plucky-beryl-19c.notion.site/?source=copy_link" target="_blank">
-                                    자세한 내용 노션 바로가기
-                                </LinkButton>
+                                *지원 시 선수강 강의를 수강 완료한 화면 캡쳐본을 제출할 경우 가산점이 부여됩니다.
                             </TargetSubDesc>
                         </CenteredArea>
 
@@ -445,23 +442,10 @@ const TargetSubDesc = styled.p`
     line-height: 1.125rem; 
     margin-bottom: 1.5rem; 
     width: 100%;
+    margin-top: 0.5rem;
 
 `;
 
-const LinkButton = styled.a` /* 자세한 내용 노션 바로가기 부분 */
-    display: inline-block; 
-    margin-top: 0.25rem;
-    color: #9B9B9B;
-    font-weight: 700;
-    text-decoration: underline;
-    margin-left: 0.3rem; 
-    cursor: pointer;  
-    transition: color 0.2s ease;
-
-    &:active {
-        opacity: 0.7;        /* 클릭하는 순간 살짝 투명하게 */
-    }
-`;
 
 const TargetGrid = styled.div`
     display: flex;

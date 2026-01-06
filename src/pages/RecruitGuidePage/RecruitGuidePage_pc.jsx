@@ -70,7 +70,6 @@ const RecruitGuidePagePc = () => {
                     </TargetMainDesc>
                     <TargetSubDesc>
                         *지원 시 선수강 강의를 수강 완료한 화면 캡쳐본을 제출할 경우 가산점이 부여됩니다. 
-                        <a href="https://plucky-beryl-19c.notion.site/?source=copy_link">자세한 내용 노션 바로가기</a>
                     </TargetSubDesc>
 
                     <TargetGrid>
@@ -443,23 +442,6 @@ const TargetSubDesc = styled.p`
     font-weight: 400;
     line-height: 1.375rem; /* 157.143% */
     margin-bottom: 6.25rem;
-
-    a { 
-        color: var(--Atomic-Neutral-70, var(--Neutral-70, #9B9B9B));
-
-        /* Body/regular */
-        font-family: Pretendard;
-        font-size: 0.875rem;
-        font-style: normal;
-        font-weight: 700;
-        line-height: 1.375rem;
-        text-decoration-line: underline;
-        text-decoration-style: solid;
-        text-decoration-skip-ink: none;
-        text-decoration-thickness: auto;
-        text-underline-offset: auto;
-        text-underline-position: from-font;
-    }
 `;
 
 const TargetGrid = styled.div`
