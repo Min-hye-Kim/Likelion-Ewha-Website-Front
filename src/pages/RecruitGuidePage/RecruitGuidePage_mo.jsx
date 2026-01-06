@@ -71,7 +71,7 @@ const RecruitGuidePageMo = () => {
 
                             <TargetSubDesc>
                                 *지원 시 선수강 강의를 수강 완료한 화면 캡쳐본을 제출할 경우 가산점이 <br/>부여됩니다.
-                                <LinkButton href="https://notion" target="_blank">
+                                <LinkButton href="https://plucky-beryl-19c.notion.site/?source=copy_link" target="_blank">
                                     자세한 내용 노션 바로가기
                                 </LinkButton>
                             </TargetSubDesc>
@@ -219,7 +219,7 @@ const RecruitGuidePageMo = () => {
                             <li>파트 1. Elements and Structure 중<br/>‘Lesson: Introduction to HTML’ & ‘Lesson: HTML Document Standards’</li>
                         </ul>
                         </div>
-                        <a className="link-btn" href="https://example.com">사이트 바로가기</a>
+                        <a className="link-btn" href="https://www.codecademy.com/learn/learn-html">사이트 바로가기</a>
                     </PreLectureItem>
 
                     <PreLectureItem>
@@ -230,7 +230,7 @@ const RecruitGuidePageMo = () => {
                             <li>파트 2. 변수와 계산 (REPL, Shell 사용법 제외)</li>
                         </ul>
                         </div>
-                        <a className="link-btn" href="https://example.com">사이트 바로가기</a>
+                        <a className="link-btn" href="https://school.programmers.co.kr/learn/courses/2">사이트 바로가기</a>
                     </PreLectureItem>
                     </PreLectureList>
                 </PreLectureInner>
