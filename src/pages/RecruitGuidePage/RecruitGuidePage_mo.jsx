@@ -124,8 +124,10 @@ const RecruitGuidePageMo = () => {
             <ScheduleSectionWrapper>
                 <Section>
                     <SectionInner>
-                        <Icon src="/icons/ellipse4.svg" alt="" />
-                        <SectionTitle>모집 일정</SectionTitle>
+                        <ScheduleTitleArea>
+                            <Icon src="/icons/ellipse4.svg" alt="" />
+                            <SectionTitle>모집 일정</SectionTitle>
+                        </ScheduleTitleArea>
 
                         <ScheduleGrid>
                             <ScheduleCard $color="#FEF6E7">
@@ -438,6 +440,15 @@ const Icon = styled.img`
     height: 1.34369rem;
     margin-bottom: 0.5rem;
 `;
+
+const ScheduleTitleArea = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+    margin-bottom: 1rem;
+`;
+
 
 
 const ScheduleGrid = styled.div`
