@@ -835,7 +835,7 @@ const TermHeader = styled.div`
     font-family: Pretendard;
     font-size: 0.875rem;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 700;
     line-height: 1.375rem; 
 `;
 
