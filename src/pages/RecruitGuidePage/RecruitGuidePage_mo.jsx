@@ -508,7 +508,7 @@ const PartTitle = styled.h2`
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.75rem;
+    gap: 0.4rem;
     img { width: 1.25rem; }
 
     color: var(--Atomic-Neutral-20, var(--Neutral-20, #2A2A2A));
@@ -931,6 +931,11 @@ const FAQTitleArea = styled.div`
         font-style: normal;
         font-weight: 700;
         line-height: 2.25rem; 
+    }
+
+    img{
+        width: 1.25rem;
+        height: 1.34369rem;
     }
 `;
 
