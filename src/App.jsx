@@ -5,6 +5,8 @@ import Project from "./pages/project/Project.jsx";
 import ProjectDetail from "./pages/project/project-detail/ProjectDetail.jsx";
 import People from "./pages/people/People.jsx";
 import RecruitGuidePage from "./pages/RecruitGuidePage/RecruitGuidePage";
+import RecruitPart from "./pages/recruit/RecruitPart.jsx";
+import RecruitResult from "./pages/recruit/RecruitResult.jsx";
 import Apply2 from "./pages/apply2.jsx";
 import LayoutAdmin from "./layouts/adminlayout.jsx";
 
