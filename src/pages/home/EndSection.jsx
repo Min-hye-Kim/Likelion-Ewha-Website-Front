@@ -454,7 +454,7 @@ const LogoWrapper = styled.div`
         width: 0.7em;
         height: 0.75em;
         position: relative;
-        top: -0.18rem;
+        top: -0.15rem;
       }
     }
   }
