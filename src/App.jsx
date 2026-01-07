@@ -7,9 +7,9 @@ import People from "./pages/people/People.jsx";
 import RecruitGuidePage from "./pages/RecruitGuidePage/RecruitGuidePage";
 import RecruitPart from "./pages/recruit/RecruitPart.jsx";
 import RecruitResult from "./pages/recruit/RecruitResult.jsx";
-import Apply2 from "./pages/apply2.jsx";
+import Apply2 from "./pages/application.jsx";
 import LayoutAdmin from "./layouts/adminlayout.jsx";
-import Apply2Review from "./pages/apply2_review.jsx";
+import Apply2Review from "./pages/application_review.jsx";
 
 function App() {
   return (
