@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import styled, { css } from "styled-components";
 import { projects as projectsData } from "@/data";
 import ProjectCard2 from "../card/ProjectCard2";
@@ -26,6 +27,7 @@ const MOBILE_VALUES = {
 /* ================= */
 
 const Carousel2 = () => {
+  const navigate = useNavigate();
   const [current, setCurrent] = useState(CLONE_COUNT);
   const currentRef = useRef(CLONE_COUNT);
   const [transition, setTransition] = useState(true);
@@ -42,9 +44,7 @@ const Carousel2 = () => {
   const values = isMobile ? MOBILE_VALUES : PC_VALUES;
   const { ITEM_WIDTH, ITEM_GAP, CENTER_SCALE, FOCUS_SCALE, CENTER_GAP_ILLUSION, ARROW_GAP } = values;
 
-  const projectArr = Array.isArray(projectsData)
-    ? projectsData
-    : projectsData.projects;
+  const projectArr = projectsData.projects;
 
   const realLength = projectArr.length;
 
@@ -126,12 +126,17 @@ const Carousel2 = () => {
                     $centerScale={CENTER_SCALE}
                     $focusScale={FOCUS_SCALE}
                   >
-                    <ProjectCard2
-                      project={item.title}
-                      description={item.description}
-                      tags={[item.generation, item.category]}
-                      imageSrc={item.thumbnail || undefined}
-                    />
+                    <div
+                      key={item.id}
+                      onClick={() => navigate(`/project/detail/${item.id}`)}
+                    >
+                      <ProjectCard2
+                        project={item.title}
+                        description={item.description}
+                        tags={[item.generation, item.category]}
+                        imageSrc={item.thumbnail || undefined}
+                      />
+                    </div>
                   </ScaleWrapper>
                 </GapIllusion>
               </CarouselItem>
