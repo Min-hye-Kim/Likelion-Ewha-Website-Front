@@ -434,6 +434,8 @@ const LogoWrapper = styled.div`
     .flower-o {
       width: 6.54481rem;
       height: 7.03531rem;
+      position: relative;
+      top: -0.15rem;
       object-fit: contain;
       animation: ${rotate} 10s linear infinite;
       margin: 0 5px;

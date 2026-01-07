@@ -161,6 +161,8 @@ const LogoWrapper = styled.div`
       height: 7.03531rem;
       margin: 0 5px;
       object-fit: contain;
+      position: relative;
+      top: -0.15rem;
       animation: ${rotate} 10s linear infinite;
     }
 
