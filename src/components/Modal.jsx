@@ -108,7 +108,7 @@ export function Modal({
 
   // actions
   actions = [],
-  closeOnOverlay = true,
+  closeOnOverlay = false,
   closeOnEsc = true,
 }) {
   const align = alignProp ?? (showClose ? "left" : "center");
