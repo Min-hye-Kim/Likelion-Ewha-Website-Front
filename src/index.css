@@ -17,9 +17,10 @@
 }
 
 body {
-  margin: 0;
-  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, sans-serif;
   min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+  font-family:"Pretendard", -apple-system, BlinkMacSystemFont, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
