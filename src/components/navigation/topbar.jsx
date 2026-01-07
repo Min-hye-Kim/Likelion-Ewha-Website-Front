@@ -6,7 +6,6 @@ const TopBar = ({ onToggleMobileMenu }) => {
   const headerRef = useRef(null);
 
   const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState(null);
   const [headerH, setHeaderH] = useState(0);
   const [footerTopAbs, setFooterTopAbs] = useState(null);
 
@@ -81,43 +80,18 @@ const TopBar = ({ onToggleMobileMenu }) => {
         </Inner>
       </Topbar>
 
-      <MoOverlay
-        $open={isOpen}
-        $top={headerH}
-        $footerTopAbs={footerTopAbs}
-      >
+      <MoOverlay $open={isOpen} $top={headerH} $footerTopAbs={footerTopAbs}>
         <MoBackdrop type="button" aria-label="Close menu" onClick={closeMenu} />
 
         <MoPanel aria-label="Mobile menu" $open={isOpen}>
           <MoMenu>
-            <MoItem
-              to="/project"
-              $active={selected === "project"}
-              onClick={() => {
-                setSelected("project");
-                closeMenu();
-              }}
-            >
+            <MoItem to="/project" onClick={closeMenu}>
               PROJECT
             </MoItem>
-            <MoItem
-              to="/people"
-              $active={selected === "people"}
-              onClick={() => {
-                setSelected("people");
-                closeMenu();
-              }}
-            >
+            <MoItem to="/people" onClick={closeMenu}>
               PEOPLE
             </MoItem>
-            <MoItem
-              to="/recruit"
-              $active={selected === "recruit"}
-              onClick={() => {
-                setSelected("recruit");
-                closeMenu();
-              }}
-            >
+            <MoItem to="/recruit" onClick={closeMenu}>
               RECRUIT
             </MoItem>
           </MoMenu>
@@ -195,7 +169,11 @@ const MenuLink = styled(NavLink)`
   text-decoration: none;
 
   &.active {
-    color: var(--primary-main, #05da5b);
+    color: #00ff67;
+  }
+
+  &:hover {
+    color: var(--Atomic-Green-90, #98fba4);
   }
 `;
 
@@ -221,6 +199,11 @@ const MoMenuButton = styled.button`
     display: block;
     width: 28px;
     height: 28px;
+  }
+
+  &:hover img {
+    filter: brightness(0) saturate(100%) invert(66%) sepia(86%)
+      saturate(428%) hue-rotate(87deg) brightness(106%) contrast(102%);
   }
 `;
 
@@ -283,11 +266,19 @@ const MoMenu = styled.nav`
 `;
 
 const MoItem = styled(NavLink)`
-  color: ${({ $active }) => ($active ? "#00FF67" : "#FFF")};
+  color: #fff;
   text-align: center;
   font-family: "Bayon", sans-serif;
   font-size: 24px;
   font-weight: 400;
   line-height: 32px;
   text-decoration: none;
+
+  &.active {
+    color: #00ff67;
+  }
+
+  &:hover {
+    color: var(--Atomic-Green-90, #98fba4);
+  }
 `;
