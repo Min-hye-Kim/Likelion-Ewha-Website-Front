@@ -80,6 +80,10 @@ const Track = styled.div`
   width: max-content; /* 자식 요소들을 한 줄로 길게 배치 */
   gap: 1.25rem; /* 이미지 사이 간격 (기존 gap 유지) */
 
+  @media (max-width: 799px) {
+    gap: 0.75rem;
+  }
+
   animation: ${scrollAnimation} 30s linear infinite;
 
   /* 호버 시 멈춤 */
@@ -92,6 +96,7 @@ const ImageCard = styled.div`
   /* PC 사이즈 */
   width: 15rem;
   height: 15rem;
+  box-shadow: inset 0 0 0 1px #dbdbdb;
 
   flex-shrink: 0; /* 크기 줄어들지 않게 고정 */
   border-radius: 1rem;
