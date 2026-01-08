@@ -7,9 +7,9 @@ import People from "./pages/people/People.jsx";
 import RecruitGuidePage from "./pages/RecruitGuidePage/RecruitGuidePage";
 import RecruitPart from "./pages/recruit/RecruitPart.jsx";
 import RecruitResult from "./pages/recruit/RecruitResult.jsx";
-import Apply2 from "./pages/application.jsx";
+import ApplyIntegrated from "./pages/application.jsx";
 import LayoutAdmin from "./layouts/adminlayout.jsx";
-import Apply2Review from "./pages/application_review.jsx";
+import Apply2Review from "./pages/ApplicationReview.jsx";
 
 function App() {
   return (
@@ -22,7 +22,7 @@ function App() {
         <Route path="people" element={<People />} />
         <Route path="recruit" element={<RecruitGuidePage />} />
         {/* recruit */}
-        <Route path="recruit/apply" element={<Apply2 />} />
+        <Route path="recruit/apply" element={<ApplyIntegrated />} />
         <Route path="recruit/apply/preview" element={<Apply2Review />} />
         <Route path="recruit/part" element={<RecruitPart />} />
         <Route path="recruit/part/result" element={<RecruitResult />} />
