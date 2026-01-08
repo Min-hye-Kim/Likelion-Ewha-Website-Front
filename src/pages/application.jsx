@@ -101,11 +101,12 @@ function formatInterviewTimes(interviewAvailableTimes, interviewDates) {
   const result = [];
 
   for (const dateInfo of interviewDates) {
-    const { date, pm } = dateInfo;
+    const { date } = dateInfo;
     const selectedTimes = interviewAvailableTimes[date] || [];
 
-    for (const time of selectedTimes) {
-      const isPM = pm.includes(time);
+    for (const prefixedTime of selectedTimes) {
+      const isPM = prefixedTime.startsWith("pm_");
+      const time = prefixedTime.replace(/^(am_|pm_)/, ""); // 9:00이랑 9:30이 겹침..
       const time24 = convertTo24Hour(time, isPM);
       const isoString = `${date}T${time24}:00+09:00`;
       result.push(isoString);
@@ -185,11 +186,12 @@ function ApplicationCodeModal({ isOpen, onClose, navigate, initialCode = "" }) {
     if (!isCodeValid || isLoading) return;
     setIsLoading(true);
     try {
-      await api.post("/recruitments/application/my/", {
+      const response = await api.post("/recruitments/application/my/", {
         application_code: code.trim(),
       });
       handleClose();
-      navigate("recruitapply/preview", { state: { applicationCode: code.trim() } });
+      // application → application_review 전달 (모달이 여기 구현되어 있어서..)
+      navigate("/recruit/apply/preview", { state: { app: response.data } });
     } catch (error) {
       setErrorMode(true);
     } finally {
@@ -275,6 +277,12 @@ export default function ApplyIntegrated() {
   const navigate = useNavigate();
   const location = useLocation();
 
+  useEffect(() => {
+    if (!location.state?.part) {
+      navigate("/recruit", { replace: true });
+    }
+  }, [location.state?.part, navigate]);
+
   const [isCodeModalOpen, setIsCodeModalOpen] = useState(false);
 
   const [part, setPart] = useState(() => location.state?.part || "");
@@ -319,13 +327,14 @@ export default function ApplyIntegrated() {
   const [interviewAvailableTimes, setInterviewAvailableTimes] = useState({});
   const [videoAgree, setVideoAgree] = useState(false);
 
-  function toggleTime(date, time) {
+  function toggleTime(date, time, period) {
+    const prefixedTime = `${period}_${time}`;
     setInterviewAvailableTimes((prev) => {
       const arr = prev[date] || [];
-      if (arr.includes(time)) {
-        return { ...prev, [date]: arr.filter((t) => t !== time) };
+      if (arr.includes(prefixedTime)) {
+        return { ...prev, [date]: arr.filter((t) => t !== prefixedTime) };
       }
-      return { ...prev, [date]: [...arr, time] };
+      return { ...prev, [date]: [...arr, prefixedTime] };
     });
   }
 
@@ -493,24 +502,6 @@ export default function ApplyIntegrated() {
             <PageName>지원서 작성</PageName>
             <PartName>{PART_OPTIONS.find((p) => p.value === part)?.label}</PartName>
           </TitleWrapper>
-
-          {!part && (
-            <PartPickWrap>
-              <PartPickTitle>지원 파트를 선택해주세요.</PartPickTitle>
-              <PartButtons>
-                {PART_OPTIONS.map((p) => (
-                  <PartBtn
-                    key={p.value}
-                    type="button"
-                    $active={part === p.value}
-                    onClick={() => setPart(p.value)}
-                  >
-                    {p.label}
-                  </PartBtn>
-                ))}
-              </PartButtons>
-            </PartPickWrap>
-          )}
 
           <Section>
             <SectionTitle>1. 지원자 정보</SectionTitle>
@@ -806,12 +797,12 @@ export default function ApplyIntegrated() {
                           <TimeLabel>오전</TimeLabel>
                           <TimeRow>
                             {am.map((time) => {
-                              const selected = (interviewAvailableTimes[date] || []).includes(time);
+                              const selected = (interviewAvailableTimes[date] || []).includes(`am_${time}`);
                               return (
                                 <span
-                                  key={time}
+                                  key={`am_${time}`}
                                   style={{ display: "inline-block", cursor: "pointer" }}
-                                  onClick={() => toggleTime(date, time)}
+                                  onClick={() => toggleTime(date, time, "am")}
                                 >
                                   {isMO ? (
                                     selected ? (
@@ -832,12 +823,12 @@ export default function ApplyIntegrated() {
                           <TimeLabel>오후</TimeLabel>
                           <TimeRow>
                             {pm.map((time) => {
-                              const selected = (interviewAvailableTimes[date] || []).includes(time);
+                              const selected = (interviewAvailableTimes[date] || []).includes(`pm_${time}`);
                               return (
                                 <span
-                                  key={time}
+                                  key={`pm_${time}`}
                                   style={{ display: "inline-block", cursor: "pointer" }}
-                                  onClick={() => toggleTime(date, time)}
+                                  onClick={() => toggleTime(date, time, "pm")}
                                 >
                                   {isMO ? (
                                     selected ? (
@@ -2514,42 +2505,4 @@ const MoBtn = styled.button`
     cursor: default;
     opacity: 0.6;
   }
-`;
-const PartPickWrap = styled.div`
-  width: 100%;
-  max-width: 971px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  align-self: stretch;
-`;
-
-const PartPickTitle = styled.div`
-  color: var(--Neutral-30, #474747);
-  font-family: Pretendard;
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 22px;
-`;
-
-const PartButtons = styled.div`
-  width: 100%;
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-`;
-
-const PartBtn = styled.button`
-  border: 1px solid var(--Neutral-95, #dcdcdc);
-  background: ${({ $active }) => ($active ? "var(--Primary-Main, #05DA5B)" : "var(--Common-100, #fff)")};
-  color: ${({ $active }) => ($active ? "var(--Common-100, #fff)" : "var(--Neutral-50, #737373)")};
-  padding: 10px 16px;
-  border-radius: 999px;
-  cursor: pointer;
-  font-family: Pretendard;
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 22px;
 `;

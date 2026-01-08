@@ -15,8 +15,8 @@ const RecruitPart = () => {
         return () => window.removeEventListener("resize", handleResize);
       }, []);
     
-    const handleClick = () => {
-        navigate("/recruit/apply/form");
+    const handleClick = (partValue) => {
+        navigate("/recruit/apply", { state: { part: partValue } });
     }; 
 
   return (
@@ -28,7 +28,7 @@ const RecruitPart = () => {
       <CardWrapper>
         <Card 
           className="pm"
-          onClick={handleClick}
+          onClick={() => handleClick("PM_DESIGN")}
         >
             <PartName>기획•디자인</PartName>
             <Apply className="h5-bold pm">
@@ -42,7 +42,7 @@ const RecruitPart = () => {
         </Card>
         <Card
           className="fe"
-          onClick={handleClick}
+          onClick={() => handleClick("FRONTEND")}
         >
             <PartName>프론트엔드</PartName>
             <Apply className="h5-bold fe">
@@ -56,7 +56,7 @@ const RecruitPart = () => {
         </Card>
         <Card 
           className="be"
-          onClick={handleClick}
+          onClick={() => handleClick("BACKEND")}
         >
             <PartName>백엔드</PartName>
             <Apply className="h5-bold be">
