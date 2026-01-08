@@ -11,7 +11,7 @@ function People() {
     });
 
     const [selectedGeneration, setSelectedGeneration] = useState('13기');
-    const [selectedPart, setSelectedPart] = useState('전체');
+    const [selectedPart, setSelectedPart] = useState('기획•디자인');
 
     // 기수 필터 (공통)
     const filteredByGeneration = members.members.filter(
