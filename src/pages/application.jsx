@@ -277,6 +277,12 @@ export default function ApplyIntegrated() {
   const navigate = useNavigate();
   const location = useLocation();
 
+  useEffect(() => {
+    if (!location.state?.part) {
+      navigate("/recruit", { replace: true });
+    }
+  }, [location.state?.part, navigate]);
+
   const [isCodeModalOpen, setIsCodeModalOpen] = useState(false);
 
   const [part, setPart] = useState(() => location.state?.part || "");
