@@ -60,8 +60,6 @@ const CardWrapper = styled.div`
   border-radius: 1.25rem;
   border: 1px solid var(--neutral-95);
 
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
-
   transition: all 0.2s ease;
 
   @media (max-width: 799px) {
@@ -131,8 +129,7 @@ const TagWrapper = styled.div`
   flex-wrap: nowrap;
   gap: 0.5rem;
   margin-top: auto;
-  overflow-x: hidden;
-  white-space: nowrap;
+  overflow: hidden;
 
   transition: all 0.2s ease;
 
@@ -147,4 +144,12 @@ const Tag = styled.span`
   font-family: 'Pretendard', sans-serif;
   font-size: 0.75rem;
   font-weight: 400;
+  white-space: nowrap;
+  flex-shrink: 0;
+
+  &:last-child {
+    flex-shrink: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 `;

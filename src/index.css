@@ -16,12 +16,29 @@
   box-sizing: border-box;
 }
 
+html {
+  overflow-x: hidden;
+  width: 100%;
+}
+
 body {
   margin: 0;
-  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, sans-serif;
   min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* 스크롤바 완전히 숨기기 (모든 브라우저) */
+::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 /* ————————————— 타이포 ————————————— */
