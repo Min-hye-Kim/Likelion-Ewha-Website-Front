@@ -117,7 +117,7 @@ const PeopleWrapper = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    overflow-x: hidden;
+    overflow: hidden;
     padding: 5rem 5rem 10rem 5rem;
 
     @media (max-width: 49.9999rem) {

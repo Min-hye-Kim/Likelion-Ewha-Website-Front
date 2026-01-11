@@ -164,7 +164,7 @@ const DetailWrapper = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    overflow-x: hidden;
+    overflow: hidden;
 `
 
 const Thumbnail = styled.div`
