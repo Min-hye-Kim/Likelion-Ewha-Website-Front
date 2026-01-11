@@ -113,6 +113,7 @@ export default People;
 const PeopleWrapper = styled.div`
     position: relative;
     width: 100%;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -211,6 +212,8 @@ const Design1 = styled.div`
     position: absolute;
     top: -1.25rem;
     left: 2.5rem;
+    pointer-events: none;
+    z-index: 0;
     
     img {
         aspect-ratio: 230 / 145;
@@ -233,6 +236,8 @@ const Design2 = styled.div`
     position: absolute;
     top: 20.1875rem;
     right: -2.5rem;
+    pointer-events: none;
+    z-index: 0;
     
     img {
         aspect-ratio: 230 / 145;
@@ -255,6 +260,8 @@ const Design3 = styled.div`
     position: absolute;
     top: 63.375rem;
     left: -42.5rem;
+    pointer-events: none;
+    z-index: 0;
     
     img {
         aspect-ratio: 230 / 145;

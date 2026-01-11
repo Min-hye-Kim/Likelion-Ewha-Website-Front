@@ -160,11 +160,13 @@ export default ProjectDetail;
 
 const DetailWrapper = styled.div`
     width: 100%;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    position: relative;
 `
 
 const Thumbnail = styled.div`
