@@ -12,14 +12,14 @@ const TopBar = ({ onToggleMobileMenu }) => {
   const toggleMenu = () => {
     setIsOpen((prev) => {
       const next = !prev;
-      setTimeout(() => onToggleMobileMenu?.(next), 0);
+      onToggleMobileMenu?.(next);
       return next;
     });
   };
 
   const closeMenu = () => {
     setIsOpen(false);
-    setTimeout(() => onToggleMobileMenu?.(false), 0);
+    onToggleMobileMenu?.(false);
   };
 
   useLayoutEffect(() => {
@@ -29,7 +29,7 @@ const TopBar = ({ onToggleMobileMenu }) => {
       setHeaderH(prev => prev !== newHeight ? newHeight : prev);
     };
 
-    queueMicrotask(updateHeader);
+    updateHeader();
     window.addEventListener("resize", updateHeader);
     return () => window.removeEventListener("resize", updateHeader);
   }, []);
@@ -47,7 +47,7 @@ const TopBar = ({ onToggleMobileMenu }) => {
       setFooterTopAbs((prev) => prev !== absTop ? absTop : prev);
     };
 
-    queueMicrotask(updateFooterTop);
+    updateFooterTop();
 
     window.addEventListener("scroll", updateFooterTop, { passive: true });
     window.addEventListener("resize", updateFooterTop);
