@@ -14,7 +14,7 @@ function Project() {
 
     useEffect(() => {
         window.scrollTo(0, 0);
-    });
+    }, []);
 
     const CATEGORY_MAP = {
         '전체': null,
@@ -171,13 +171,11 @@ export default Project;
 
 const ProjectWrapper = styled.div`
     width: 100%;
-    min-height: 100vh;
     position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
     padding: 5rem 5rem 10rem 5rem;
 
     @media (max-width: 49.9999rem) { /* 모바일 */
@@ -321,8 +319,6 @@ const Design1 = styled.div`
     position: absolute;
     top: -1.25rem;
     left: 2.5rem;
-    pointer-events: none;
-    z-index: 0;
     
     img {
         aspect-ratio: 230 / 145;
@@ -345,8 +341,6 @@ const Design2 = styled.div`
     position: absolute;
     top: 20.1875rem;
     right: -2.5rem;
-    pointer-events: none;
-    z-index: 0;
     
     img {
         aspect-ratio: 230 / 145;
@@ -369,8 +363,6 @@ const Design3 = styled.div`
     position: absolute;
     top: 63.375rem;
     left: -2.5rem;
-    pointer-events: none;
-    z-index: 0;
 
     img {
         aspect-ratio: 230 / 145;
