@@ -275,24 +275,24 @@ const RecruitGuidePageMo = () => {
                         <TermHeader>여름방학</TermHeader>
                         <TermHeader>2학기</TermHeader>
 
-                        <WideActivityBox color="#EFFFF0" border="#05DA5B">파트별 세션 및 스터디</WideActivityBox>
+                        <WideActivityBox color="#EFFFF0" $border="#05DA5B">파트별 세션 및 스터디</WideActivityBox>
                         
                         <ActivityColumn>
-                            <ActivityBox color="#EFFFF0" border="#05DA5B">공통 세션</ActivityBox>
-                            <ActivityBox color="#FFF8ED" border="#FF7B2E">중앙 아이디어톤 (4월 말~5월)</ActivityBox>
+                            <ActivityBox color="#EFFFF0" $border="#05DA5B">공통 세션</ActivityBox>
+                            <ActivityBox color="#FFF8ED" $border="#FF7B2E">중앙 아이디어톤 (4월 말~5월)</ActivityBox>
                         </ActivityColumn>
 
                         <ActivityColumn>
-                            <ActivityBox color="#FFF8ED" border="#FF7B2E">여기톤 (7월, 6개 여대 연합 해커톤)</ActivityBox>
-                            <ActivityBox color="#FFF8ED" border="#FF7B2E">중앙 해커톤 (8월, 전국 53개 대학 연합)</ActivityBox>
+                            <ActivityBox color="#FFF8ED" $border="#FF7B2E">여기톤 (7월, 6개 여대 연합 해커톤)</ActivityBox>
+                            <ActivityBox color="#FFF8ED" $border="#FF7B2E">중앙 해커톤 (8월, 전국 53개 대학 연합)</ActivityBox>
                         </ActivityColumn>
 
                         <ActivityColumn>
-                            <ActivityBox color="#EFFFF0" border="#05DA5B">대동제 리디자인</ActivityBox>
-                            <ActivityBox color="#EFFFF0" border="#05DA5B">팀 프로젝트</ActivityBox>
-                            <ActivityBox color="#FFF8ED" border="#FF7B2E">신촌톤 (9월, 신촌 4개 대학 연합 해커톤)</ActivityBox>
-                            <ActivityBox color="#FFF8ED" border="#FF7B2E">신촌 대학 연합 SW 창업 경진 대회 (11월)</ActivityBox>
-                            <ActivityBox color="#EFFFF0" border="#05DA5B">기수 졸업 프로젝트</ActivityBox>
+                            <ActivityBox color="#EFFFF0" $border="#05DA5B">대동제 리디자인</ActivityBox>
+                            <ActivityBox color="#EFFFF0" $border="#05DA5B">팀 프로젝트</ActivityBox>
+                            <ActivityBox color="#FFF8ED" $border="#FF7B2E">신촌톤 (9월, 신촌 4개 대학 연합 해커톤)</ActivityBox>
+                            <ActivityBox color="#FFF8ED" $border="#FF7B2E">신촌 대학 연합 SW 창업 경진 대회 (11월)</ActivityBox>
+                            <ActivityBox color="#EFFFF0" $border="#05DA5B">기수 졸업 프로젝트</ActivityBox>
                         </ActivityColumn>
                     </ActivityGrid>
                 </ActivityInner>
@@ -842,7 +842,7 @@ const TermHeader = styled.div`
 const WideActivityBox = styled.div`
     grid-column: span 3;
     background: ${props => props.color};
-    border: 1px solid ${props => props.border};
+    border: 1px solid ${props => props.$border};
     border-radius: 0.25rem;
     padding: 0.5rem;
     color: var(--Atomic-Neutral-20, var(--Neutral-20, #2A2A2A));
@@ -863,7 +863,7 @@ const ActivityColumn = styled.div`
 
 const ActivityBox = styled.div`
     background: ${props => props.color}; 
-    border: 1px solid ${props => props.border};
+    border: 1px solid ${props => props.$border};
     padding: 0.5rem 0.5rem;
     text-align: center;
     border-radius: 0.25rem;
