@@ -4,7 +4,7 @@ import Home from "./pages/home/Home";
 import Project from "./pages/project/Project.jsx";
 import ProjectDetail from "./pages/project/ProjectDetail.jsx";
 import People from "./pages/people/People.jsx";
-import RecruitGuidePage from "./pages/recruit/recruit-guide/RecruitGuidePage";
+import RecruitGuide from "./pages/recruit/recruit-guide/RecruitGuide";
 import RecruitPart from "./pages/recruit/RecruitPart.jsx";
 import RecruitResult from "./pages/recruit/RecruitResult.jsx";
 import ApplyIntegrated from "./pages/application.jsx";
@@ -20,7 +20,7 @@ function App() {
         <Route path="project" element={<Project />} />
         <Route path="project/detail/:id" element={<ProjectDetail />} />
         <Route path="people" element={<People />} />
-        <Route path="recruit" element={<RecruitGuidePage />} />
+        <Route path="recruit" element={<RecruitGuide />} />
         {/* recruit */}
         <Route path="recruit/apply" element={<ApplyIntegrated />} />
         <Route path="recruit/apply/preview" element={<Apply2Review />} />

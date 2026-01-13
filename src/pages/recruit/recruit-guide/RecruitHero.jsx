@@ -1,7 +1,21 @@
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import RecruitStatusButton from "../../../components/buttons/RecruitStatusButton";
 
-const RecruitGuideHeroPc = () => {
+const RecruitHero = () => {
+    const [isMobile, setIsMobile] = useState(
+        typeof window !== "undefined" && window.innerWidth <= 799
+    );
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 799);
+        };
+
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
     return (
         <Section>
             <Inner>
@@ -12,7 +26,7 @@ const RecruitGuideHeroPc = () => {
                     </Description>
 
                     <ButtonGroup>
-                        <RecruitStatusButton isMobile={false} pageType="recruit" />
+                        <RecruitStatusButton isMobile={isMobile} pageType="recruit" />
                     </ButtonGroup>
                 </Content>
             </Inner>
@@ -20,13 +34,16 @@ const RecruitGuideHeroPc = () => {
     );
 };
 
-export default RecruitGuideHeroPc;
-
+export default RecruitHero;
 
 const Section = styled.section`
     width: 100%;
     display: flex;
     justify-content: center;
+    
+    @media (max-width: 799px) {
+        background-color: #000;
+    }
 `;
 
 const Inner = styled.div`
@@ -47,6 +64,12 @@ const Inner = styled.div`
         rgba(0, 0, 0, 0) 100%
         ),
         url("/images/RecruitPcHero.png") center / cover no-repeat;
+    
+    @media (max-width: 799px) {
+        height: auto;
+        padding: 2.5rem 0;
+        background: url("/images/RecruitMoHero.png") center / cover no-repeat;
+    }
 `;
 
 const Content = styled.div`
@@ -59,6 +82,11 @@ const Content = styled.div`
 
     text-align: center;
     color: #ffffff;
+    
+    @media (max-width: 799px) {
+        width: 100%;
+        padding: 0;
+    }
 `;
 
 const Title = styled.h1`
@@ -75,6 +103,15 @@ const Title = styled.h1`
     font-style: normal;
     font-weight: 400;
     line-height: 0; /* 0% */
+    
+    @media (max-width: 799px) {
+        width: auto;
+        height: auto;
+        min-width: 0;
+        font-size: 2.5rem;
+        line-height: 2.5rem;
+        margin-bottom: 0.12rem;
+    }
 `;
 
 const Description = styled.p`
@@ -92,6 +129,16 @@ const Description = styled.p`
 
     margin-top: 1.5rem;
     margin-bottom: 5rem;
+    
+    @media (max-width: 799px) {
+        width: auto;
+        min-width: 0;
+        font-size: 0.875rem;
+        line-height: 1.375rem;
+        margin-top: 0;
+        margin-bottom: 2rem;
+        color: var(--Static-White, #FFF);
+    }
 `;
 
 const ButtonGroup = styled.div`
@@ -100,4 +147,8 @@ const ButtonGroup = styled.div`
     align-items: center;
     gap: 1.25rem;
     width: 100%;
+    
+    @media (max-width: 799px) {
+        gap: 0.5rem;
+    }
 `;
