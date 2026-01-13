@@ -214,6 +214,10 @@ const ActivityLegend = styled.div`
     flex-direction: column;
     gap: 0.56rem;
     align-items: flex-start;
+
+    @media (max-width: 799px) {
+        gap: 0;
+    }
 `;
 
 const LegendItem = styled.div`
@@ -239,6 +243,7 @@ const LegendItem = styled.div`
     transition: all 0.2s ease;
 
     @media (max-width: 799px) {
+        gap: 0.25rem;
         font-size: 0.625rem;
         line-height: 1.25rem;
         color: var(--Atomic-Cool-Neutral-70, var(--Cool-Neutral-70, #989BA2));
