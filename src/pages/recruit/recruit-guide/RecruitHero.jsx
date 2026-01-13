@@ -1,21 +1,7 @@
-import { useState, useEffect } from "react";
 import styled from "styled-components";
 import RecruitStatusButton from "../../../components/buttons/RecruitStatusButton";
 
 const RecruitHero = () => {
-    const [isMobile, setIsMobile] = useState(
-        typeof window !== "undefined" && window.innerWidth <= 799
-    );
-
-    useEffect(() => {
-        const handleResize = () => {
-            setIsMobile(window.innerWidth <= 799);
-        };
-
-        window.addEventListener("resize", handleResize);
-        return () => window.removeEventListener("resize", handleResize);
-    }, []);
-
     return (
         <Section>
             <Inner>
@@ -26,7 +12,7 @@ const RecruitHero = () => {
                     </Description>
 
                     <ButtonGroup>
-                        <RecruitStatusButton isMobile={isMobile} pageType="recruit" />
+                        <RecruitStatusButton pageType="recruit" />
                     </ButtonGroup>
                 </Content>
             </Inner>

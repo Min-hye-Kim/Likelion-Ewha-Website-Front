@@ -28,15 +28,9 @@ const IntroSection = () => {
           </div>
         </LogoWrapper>
 
-        {/* [변경] PC 버튼 영역: 통합 컴포넌트 하나만 넣으면 끝! */}
-        <PcButtonArea>
-          <RecruitStatusButton isMobile={false} />
-        </PcButtonArea>
-
-        {/* [변경] Mobile 버튼 영역: 통합 컴포넌트 하나만 넣으면 끝! */}
-        <MobileButtonArea>
-          <RecruitStatusButton isMobile={true} />
-        </MobileButtonArea>
+        <ButtonArea>
+          <RecruitStatusButton />
+        </ButtonArea>
 
         {/* 하단 텍스트(지원서 열람 등)와 모달(Modal)들도 
             RecruitStatusButton 안에 다 들어있어서 여기엔 필요 없습니다. */}
@@ -193,21 +187,12 @@ const LogoWrapper = styled.div`
   }
 `;
 
-const PcButtonArea = styled.div`
-  display: block;
-
-  @media (max-width: 799px) {
-    display: none !important;
-  }
-`;
-
-const MobileButtonArea = styled.div`
-  display: none;
-  width: 100%;
-  margin-top: 1.5rem;
+const ButtonArea = styled.div`
+  display: flex;
   justify-content: center;
+  width: 100%;
 
   @media (max-width: 799px) {
-    display: flex !important;
+    margin-top: 1.5rem;
   }
 `;

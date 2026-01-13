@@ -1,23 +1,9 @@
-import { useState, useEffect } from "react";
 import styled from "styled-components";
 import DropDown3 from "../../../components/dropdown/Dropdown3";
 import RecruitStatusButton from "../../../components/buttons/RecruitStatusButton";
 import { faq } from "@/data";
 
 const RecruitDetailInfo = () => {
-    const [isMobile, setIsMobile] = useState(
-        typeof window !== "undefined" && window.innerWidth <= 799
-    );
-
-    useEffect(() => {
-        const handleResize = () => {
-            setIsMobile(window.innerWidth <= 799);
-        };
-
-        window.addEventListener("resize", handleResize);
-        return () => window.removeEventListener("resize", handleResize);
-    }, []);
-
     return (
         <>
             {/* 활동 계획 */}
@@ -127,7 +113,7 @@ const RecruitDetailInfo = () => {
                     <img src="/icons/ellipse.svg" alt="별 아이콘" />
                     <h2>빛나는 내일, 이대 멋사와 함께하세요!</h2>
                     <BannerButtons>
-                        <RecruitStatusButton isMobile={isMobile} pageType="recruit" recruitStyle="2" />
+                        <RecruitStatusButton pageType="recruit" recruitStyle="2" />
                     </BannerButtons>
                 </BannerContent>
             </FooterBannerSection>
