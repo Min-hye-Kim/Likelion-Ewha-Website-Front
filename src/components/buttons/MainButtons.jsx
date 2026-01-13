@@ -1,41 +1,34 @@
 import styled from "styled-components";
 
 /* =========================
-    Finished Buttons 
+    Main Buttons (Responsive)
 ========================= */
 
+/* Primary */
 export const SubmitButton = (props) => (
   <PrimaryButton {...props}>제출하기</PrimaryButton>
-);
-
-export const ApplyBlackButton = (props) => (
-  <PrimaryBlackButton {...props}>지원하기</PrimaryBlackButton>
 );
 
 export const ApplyButton = (props) => (
   <PrimaryButton {...props}>지원하기</PrimaryButton>
 );
 
-export const DetailLinkButton = (props) => (
-  <SecondaryButton {...props}>자세한 내용 노션 바로가기</SecondaryButton>
+export const ApplyBlackButton = (props) => (
+  <PrimaryBlackButton {...props}>지원하기</PrimaryBlackButton>
 );
 
-export const DetailLinkDarkButton = (props) => (
-  <SecondaryDarkButton {...props}>
-    자세한 내용 노션 바로가기
-  </SecondaryDarkButton>
-);
-
+/* Disabled */
 export const DisabledSubmitButton = (props) => (
   <DisabledButton disabled {...props}>
     제출하기
   </DisabledButton>
 );
 
+/* Default */
 export const RecruitInfoButton = (props) => (
   <DefaultButton {...props}>
     <span>14기 모집 안내 바로가기</span>
-    <img src="/icons/arrowRight.svg" />
+    <ArrowIcon src="/icons/arrowRight.svg" />
   </DefaultButton>
 );
 
@@ -43,13 +36,12 @@ export const RecruitAlarmButton = (props) => (
   <DefaultButton {...props}>14기 모집 알림 받기</DefaultButton>
 );
 
-/*리쿠루팅 버튼 추가된 부분 여기에 추가했습니다 */
-// [추가 1] 합격자 조회 버튼 (내용이 바뀔 수 있게 children으로 받음) - case4,5
+/* Recruit Check Button */
 export const RecruitCheckButton = ({ children, ...props }) => (
   <DefaultButton {...props}>{children}</DefaultButton>
 );
 
-// [추가 2] 모집 마감 버튼 (회색, 비활성화)- case3
+/* Recruit Disabled Button */
 export const RecruitDisabledButton = (props) => (
   <RecruitDisabledStyle disabled {...props}>
     14기 지원 마감
@@ -57,7 +49,7 @@ export const RecruitDisabledButton = (props) => (
 );
 
 export const HomeButton = (props) => (
-    <PrimaryButton {...props}>메인으로</PrimaryButton>
+  <PrimaryButton {...props}>메인으로</PrimaryButton>
 );
 
 /* =========================
@@ -81,6 +73,7 @@ const BaseButton = styled.button`
   border: none;
   cursor: pointer;
   text-align: center;
+  white-space: nowrap;
 
   transition: all 0.2s ease;
 
@@ -91,7 +84,16 @@ const BaseButton = styled.button`
   }
 
   &:not(:disabled):hover {
-      filter: brightness(0.9);
+    filter: brightness(0.9);
+  }
+
+  @media (max-width: 799px) {
+    width: 12.5rem;
+    padding: 0.625rem 1.75rem;
+    border-radius: 1.25rem;
+    font-size: 0.875rem;
+    line-height: 1.375rem;
+    gap: 0.25rem;
   }
 `;
 
@@ -104,37 +106,49 @@ const PrimaryButton = styled(BaseButton)`
 /* ===== Primary (black text) ===== */
 const PrimaryBlackButton = styled(BaseButton)`
   background-color: #05da5b;
-  color: #000000;
-`;
+  color: #2a2a2a;
 
-/* ===== Secondary ===== */
-const SecondaryButton = styled(BaseButton)`
-  background-color: #ffffff;
-  border: 1.5px solid var(--Primary-Main, #05da5b);
-  color: #05da5b;
-`;
-
-/* ===== Secondary Dark ===== */
-const SecondaryDarkButton = styled(BaseButton)`
-  border-radius: 2.5rem;
-  border: 1.5px solid var(--Primary-Main, #05da5b);
-  background: rgba(30, 30, 30, 0.8);
-  color: #05da5b;
+  @media (max-width: 799px) {
+    color: #2a2a2a;
+  }
 `;
 
 /* ===== Disabled ===== */
 const DisabledButton = styled(BaseButton)`
   background-color: #a9a9a9;
   color: #ffffff;
+
+  @media (max-width: 799px) {
+    background-color: #9b9b9b;
+  }
 `;
 
 /* ===== Default ===== */
 const DefaultButton = styled(BaseButton)`
   background-color: #474747;
   color: #ffffff;
+
+  @media (max-width: 799px) {
+    width: 13.75rem;
+    height: 2.625rem;
+    padding: 0.625rem 1.5rem 0.625rem 1.75rem;
+  }
 `;
 
 const RecruitDisabledStyle = styled(BaseButton)`
   background-color: #a9a9a9;
   color: #ffffff;
+
+  @media (max-width: 799px) {
+    width: 13.75rem;
+    height: 2.625rem;
+    padding: 0.625rem 1.5rem 0.625rem 1.75rem;
+    background-color: #9b9b9b;
+  }
+`;
+
+const ArrowIcon = styled.img`
+  @media (max-width: 799px) {
+    content: url('/icons/arrowRight2.svg');
+  }
 `;

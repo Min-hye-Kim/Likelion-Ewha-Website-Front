@@ -10,15 +10,7 @@ import {
   RecruitDisabledButton,
   ApplyButton,
   ApplyBlackButton,
-} from "./MainButtons_pc";
-import {
-  RecruitAlarmButtonMobile,
-  RecruitInfoButtonMobile,
-  RecruitCheckButtonMobile,
-  RecruitDisabledButtonMobile,
-  ApplyButtonMobile,
-  ApplyBlackButtonMobile,
-} from "./MainButtons_mo";
+} from "./MainButtons";
 
 // 모집 상태 계산 함수
 const getRecruitStatus = (schedule) => {
@@ -154,33 +146,17 @@ const RecruitStatusButton = ({ isMobile, pageType = "home", recruitStyle = "1" }
         // recruit 페이지: 지원하기 -> /recruit/apply/form
         if (pageType === "recruit") {
           if (recruitStyle === "1") {
-            return isMobile ? (
-              <ApplyButtonMobile onClick={goApplyForm} />
-            ) : (
-              <ApplyButton onClick={goApplyForm} />
-            );
+            return <ApplyButton onClick={goApplyForm} />;
           } else {
-            return isMobile ? (
-              <ApplyBlackButtonMobile onClick={goApplyForm} />
-            ) : (
-              <ApplyBlackButton onClick={goApplyForm} />
-            );
+            return <ApplyBlackButton onClick={goApplyForm} />;
           }
         } else {
-          return isMobile ? (
-            <RecruitInfoButtonMobile onClick={goRecruitPage} />
-          ) : (
-            <RecruitInfoButton onClick={goRecruitPage} />
-          );
+          return <RecruitInfoButton onClick={goRecruitPage} />;
         }
       }
 
       case "CLOSED":
-        return isMobile ? (
-          <RecruitDisabledButtonMobile />
-        ) : (
-          <RecruitDisabledButton />
-        );
+        return <RecruitDisabledButton />;
 
       case "FIRST_RESULT":
       case "FINAL_RESULT": {
@@ -188,11 +164,7 @@ const RecruitStatusButton = ({ isMobile, pageType = "home", recruitStyle = "1" }
           recruitStatus === "FIRST_RESULT"
             ? "1차 합격자 조회"
             : "최종 합격자 조회";
-        return isMobile ? (
-          <RecruitCheckButtonMobile onClick={goResultPage}>
-            {btnText}
-          </RecruitCheckButtonMobile>
-        ) : (
+        return (
           <RecruitCheckButton onClick={goResultPage}>
             {btnText}
           </RecruitCheckButton>
@@ -200,11 +172,7 @@ const RecruitStatusButton = ({ isMobile, pageType = "home", recruitStyle = "1" }
       }
       case "BEFORE":
       default:
-        return isMobile ? (
-          <RecruitAlarmButtonMobile onClick={openAlarmModal} />
-        ) : (
-          <RecruitAlarmButton onClick={openAlarmModal} />
-        );
+        return <RecruitAlarmButton onClick={openAlarmModal} />;
     }
   };
 
