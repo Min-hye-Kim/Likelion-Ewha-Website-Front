@@ -44,7 +44,7 @@ const getRecruitStatus = (schedule) => {
   return "CLOSED";
 };
 
-const RecruitStatusButton = ({ isMobile, pageType = "home", recruitStyle = "1" }) => {
+const RecruitStatusButton = ({ pageType = "home", recruitStyle = "1" }) => {
   // 1. 상태 및 로직 관리
   // 상태: "BEFORE" | "RECRUITING" | "CLOSED" | "FIRST_RESULT" | "FINAL_RESULT"
   const [recruitStatus, setRecruitStatus] = useState(null);
