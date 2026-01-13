@@ -676,6 +676,7 @@ const LegendItem = styled.div`
     font-style: normal;
     font-weight: 400;
     line-height: 1.25rem; 
+    white-space: nowrap;
 
     /* 동그란 아이콘 구현 */
     &::before {
