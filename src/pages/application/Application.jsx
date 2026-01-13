@@ -3,9 +3,9 @@ import { createPortal } from "react-dom";
 import { useNavigate, useLocation } from "react-router-dom";
 import styled from "styled-components";
 
-import Input from "../components/Input";
-import Dropdown2 from "../components/dropdown/Dropdown2";
-import Dropdown3 from "../components/dropdown/Dropdown3";
+import Input from "../../components/Input";
+import Dropdown2 from "../../components/dropdown/Dropdown2";
+import Dropdown3 from "../../components/dropdown/Dropdown3";
 import { api, ApplicationsAPI } from "@/apis";
 
 import {
@@ -15,7 +15,7 @@ import {
   UnselectNegativeButton,
   SelectedRadio as PcSelectedRadio,
   UnselectedRadio as PcUnselectedRadio,
-} from "../components/buttons/SelectionButtons_pc";
+} from "../../components/buttons/SelectionButtons_pc";
 import {
   SelectPositiveButtonMobile,
   SelectNegativeButtonMobile,
@@ -23,10 +23,10 @@ import {
   UnselectNegativeButtonMobile,
   SelectedRadio as MoSelectedRadio,
   UnselectedRadio as MoUnselectedRadio,
-} from "../components/buttons/SelectionButtons_mo";
-import { TimeAbled, TimeSelected } from "../components/buttons/TimeButtons_pc";
-import { TimeAbledMobile, TimeSelectedMobile } from "../components/buttons/TimeButtons_mo";
-import { Modal } from "../components/Modal.jsx";
+} from "../../components/buttons/SelectionButtons_mo";
+import { TimeAbled, TimeSelected } from "../../components/buttons/TimeButtons_pc";
+import { TimeAbledMobile, TimeSelectedMobile } from "../../components/buttons/TimeButtons_mo";
+import { Modal } from "../../components/Modal.jsx";
 
 const PRIVACY_AGREE_TEXT = `개인정보 수집 및 이용 관련 내용 개인정보 수집 및 이용 관련 내용 개인정보 수집 및 이용 관련 내용 개인정보 수집 및 이용 관련 내용 개인정보 수집 및 이용 관련 내용 개인정보 수집 및 이용 관련 내용 개인정보 수집 및 이용 관련 내용 개인정보 수집 및 이용 관련 내용 개인정보 수집 및 이용 관련 내용 개인정보 수집 및 이용 관련 내용 개인정보 수집 및 이용 관련 내용 개인정보 수집 및 이용 관련 내용 개인정보 수집 및 이용 관련 내용 개인정보 수집 및 이용 관련 내용 개인정보 수집 및 이용 관련 내용 개인정보 수집 및 이용 관련 내용 개인정보 수집 및 이용 관련 내용 개인정보 수집 및 이용 관련 내용`;
 

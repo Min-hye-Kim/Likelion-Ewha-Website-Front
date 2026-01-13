@@ -2,19 +2,19 @@ import React, { useMemo, useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-import Input from "../components/Input";
+import Input from "../../components/Input";
 
 import {
   SelectedRadio as PcSelectedRadio,
   UnselectedRadio as PcUnselectedRadio,
-} from "../components/buttons/SelectionButtons_pc";
+} from "../../components/buttons/SelectionButtons_pc";
 import {
   SelectedRadio as MoSelectedRadio,
   UnselectedRadio as MoUnselectedRadio,
-} from "../components/buttons/SelectionButtons_mo";
+} from "../../components/buttons/SelectionButtons_mo";
 
-import { TimeSelected } from "../components/buttons/TimeButtons_pc";
-import { TimeSelectedMobile } from "../components/buttons/TimeButtons_mo";
+import { TimeSelected } from "../../components/buttons/TimeButtons_pc";
+import { TimeSelectedMobile } from "../../components/buttons/TimeButtons_mo";
 
 const MIN_TEXTAREA_HEIGHT = 266;
 const SUBMIT_BOTTOM_GAP = 160;
