@@ -47,6 +47,18 @@ const BaseButton = styled.button`
     line-height: 1.5rem; 
 
     white-space: nowrap;
+
+    transition: all 0.2s ease;
+
+    &:disabled {
+        cursor: not-allowed;
+        pointer-events: none;
+        user-select: none;
+    }
+
+    &:not(:disabled):hover {
+        filter: brightness(0.9);
+    }
 `;
 
 /* Primary (large) */

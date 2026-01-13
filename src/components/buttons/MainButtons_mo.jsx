@@ -84,8 +84,16 @@ const BaseButton = styled.button`
   cursor: pointer;
   white-space: nowrap;
 
-  &:hover {
-    filter: brightness(0.97);
+  transition: all 0.2s ease;
+
+  &:disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  &:not(:disabled):hover {
+    filter: brightness(0.9);
   }
 `;
 
@@ -145,6 +153,9 @@ const DisabledButton = styled(BaseButton)`
   background-color: #9b9b9b;
   color: #ffffff;
   border: none;
+  cursor: not-allowed;
+  pointer-events: none;
+  user-select: none;
 `;
 
 const RecruitDisabledStyle = styled(BaseButton)`
@@ -155,5 +166,4 @@ const RecruitDisabledStyle = styled(BaseButton)`
   background-color: #9b9b9b;
   color: #ffffff;
   border: none;
-  cursor: default;
 `;

@@ -45,6 +45,18 @@ const BaseSelectButton = styled.button`
     line-height: 1.375rem;
 
     cursor: pointer;
+
+    transition: all 0.2s ease;
+
+    &:disabled {
+        cursor: not-allowed;
+        pointer-events: none;
+        user-select: none;
+    }
+
+    &:not(:disabled):hover {
+        filter: brightness(0.9);
+    }
 `;
 
 /* ===== Selected ===== */

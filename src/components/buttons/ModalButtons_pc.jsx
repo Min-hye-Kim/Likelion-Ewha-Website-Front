@@ -40,8 +40,16 @@ const BaseModalButton = styled.button`
 
     border-radius: 62.4375rem;
 
+    transition: all 0.2s ease;
+
     &:disabled {
         cursor: not-allowed;
+        pointer-events: none;
+        user-select: none;
+    }
+
+    &:not(:disabled):hover {
+        filter: brightness(0.9);
     }
 `;
 

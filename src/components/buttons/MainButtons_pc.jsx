@@ -5,15 +5,15 @@ import styled from "styled-components";
 ========================= */
 
 export const SubmitButton = (props) => (
-  <PrimaryWhiteButton {...props}>제출하기</PrimaryWhiteButton>
+  <PrimaryButton {...props}>제출하기</PrimaryButton>
 );
 
-export const ApplyButton = (props) => (
+export const ApplyBlackButton = (props) => (
   <PrimaryBlackButton {...props}>지원하기</PrimaryBlackButton>
 );
 
-export const ApplyWhiteButton = (props) => (
-  <PrimaryWhiteButton {...props}>지원하기</PrimaryWhiteButton>
+export const ApplyButton = (props) => (
+  <PrimaryButton {...props}>지원하기</PrimaryButton>
 );
 
 export const DetailLinkButton = (props) => (
@@ -57,7 +57,7 @@ export const RecruitDisabledButton = (props) => (
 );
 
 export const HomeButton = (props) => (
-    <PrimaryWhiteButton {...props}>메인으로</PrimaryWhiteButton>
+    <PrimaryButton {...props}>메인으로</PrimaryButton>
 );
 
 /* =========================
@@ -82,23 +82,21 @@ const BaseButton = styled.button`
   cursor: pointer;
   text-align: center;
 
-<<<<<<< HEAD
+  transition: all 0.2s ease;
+
   &:disabled {
     cursor: not-allowed;
+    pointer-events: none;
+    user-select: none;
   }
-=======
-    &:disabled {
-        cursor: not-allowed;
-    }
 
-    &:hover {
-        filter: brightness(0.97);
-    }
->>>>>>> 17cd96b (💄 메인 버튼 추가 및 호버 효과 개선)
+  &:not(:disabled):hover {
+      filter: brightness(0.9);
+  }
 `;
 
 /* ===== Primary (white text) ===== */
-const PrimaryWhiteButton = styled(BaseButton)`
+const PrimaryButton = styled(BaseButton)`
   background-color: #05da5b;
   color: #ffffff;
 `;
@@ -128,7 +126,6 @@ const SecondaryDarkButton = styled(BaseButton)`
 const DisabledButton = styled(BaseButton)`
   background-color: #a9a9a9;
   color: #ffffff;
-  cursor: not-allowed;
 `;
 
 /* ===== Default ===== */
@@ -140,9 +137,4 @@ const DefaultButton = styled(BaseButton)`
 const RecruitDisabledStyle = styled(BaseButton)`
   background-color: #a9a9a9;
   color: #ffffff;
-  cursor: default;
-
-  &:hover {
-    background-color: #d9d9d9; /* 호버 시 색상 변화 없음 */
-  }
 `;

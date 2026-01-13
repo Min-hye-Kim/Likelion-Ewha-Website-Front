@@ -41,6 +41,18 @@ const BaseTimeButton = styled.div`
     font-style: normal;
     font-weight: 700;
     line-height: 1.25rem; 
+
+    transition: all 0.2s ease;
+
+    &:disabled {
+        cursor: not-allowed;
+        pointer-events: none;
+        user-select: none;
+    }
+
+    &:not(:disabled):hover {
+        filter: brightness(0.9);
+    }
 `;
 
 /* Disabled */
