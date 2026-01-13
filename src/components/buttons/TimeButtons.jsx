@@ -1,19 +1,23 @@
 import styled from "styled-components";
 
 /* =========================
-    Time Buttons (mobile)
+    Time Buttons (Responsive)
     - time 값만 props로 받음
 ========================= */
 
-export const TimeDisabledMobile = ({ time }) => (
+export const TimeDisabled = ({ time }) => (
     <DisabledButton>{time}</DisabledButton>
 );
 
-export const TimeAbledMobile = ({ time }) => (
+export const TimeAbled = ({ time }) => (
     <AbledButton>{time}</AbledButton>
 );
 
-export const TimeSelectedMobile = ({ time }) => (
+export const TimeSelectedAdmin = ({ time }) => (
+    <SelectedAdminButton>{time}</SelectedAdminButton>
+);
+
+export const TimeSelected = ({ time }) => (
     <SelectedButton>{time}</SelectedButton>
 );
 
@@ -22,7 +26,7 @@ export const TimeSelectedMobile = ({ time }) => (
 ========================= */
 
 const BaseTimeButton = styled.div`
-    width: 3rem;
+    width: 3.25rem;
     height: 1.75rem;
     padding: 0.25rem 0.625rem;
 
@@ -53,6 +57,10 @@ const BaseTimeButton = styled.div`
     &:not(:disabled):hover {
         filter: brightness(0.9);
     }
+
+    @media (max-width: 799px) {
+        width: 3rem;
+    }
 `;
 
 /* Disabled */
@@ -71,6 +79,11 @@ const AbledButton = styled(BaseTimeButton)`
     font-weight: 400;
 `;
 
+/* Selected (Admin) */
+const SelectedAdminButton = styled(BaseTimeButton)`
+    background-color: #05da5b;
+    color: #ffffff;
+`;
 
 /* Selected */
 const SelectedButton = styled(BaseTimeButton)`

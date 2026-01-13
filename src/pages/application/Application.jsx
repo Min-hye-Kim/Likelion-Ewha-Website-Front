@@ -13,19 +13,10 @@ import {
   SelectNegativeButton,
   UnselectPositiveButton,
   UnselectNegativeButton,
-  SelectedRadio as PcSelectedRadio,
-  UnselectedRadio as PcUnselectedRadio,
-} from "../../components/buttons/SelectionButtons_pc";
-import {
-  SelectPositiveButtonMobile,
-  SelectNegativeButtonMobile,
-  UnselectPositiveButtonMobile,
-  UnselectNegativeButtonMobile,
-  SelectedRadio as MoSelectedRadio,
-  UnselectedRadio as MoUnselectedRadio,
-} from "../../components/buttons/SelectionButtons_mo";
-import { TimeAbled, TimeSelected } from "../../components/buttons/TimeButtons_pc";
-import { TimeAbledMobile, TimeSelectedMobile } from "../../components/buttons/TimeButtons_mo";
+  SelectedRadio,
+  UnselectedRadio,
+} from "../../components/buttons/SelectionButtons";
+import { TimeAbled, TimeSelected } from "../../components/buttons/TimeButtons";
 import { Modal } from "../../components/Modal.jsx";
 
 const PRIVACY_AGREE_TEXT = `개인정보 수집 및 이용 관련 내용 개인정보 수집 및 이용 관련 내용 개인정보 수집 및 이용 관련 내용 개인정보 수집 및 이용 관련 내용 개인정보 수집 및 이용 관련 내용 개인정보 수집 및 이용 관련 내용 개인정보 수집 및 이용 관련 내용 개인정보 수집 및 이용 관련 내용 개인정보 수집 및 이용 관련 내용 개인정보 수집 및 이용 관련 내용 개인정보 수집 및 이용 관련 내용 개인정보 수집 및 이용 관련 내용 개인정보 수집 및 이용 관련 내용 개인정보 수집 및 이용 관련 내용 개인정보 수집 및 이용 관련 내용 개인정보 수집 및 이용 관련 내용 개인정보 수집 및 이용 관련 내용 개인정보 수집 및 이용 관련 내용`;
@@ -711,33 +702,18 @@ export default function ApplyIntegrated() {
                     다만 개인 사정으로 인해 대면으로 학교에 방문하기 어려운 분에 한하여 온라인으로 참여하실 수 있습니다.
                   </ExampleContent>
 
-                  {isMO ? (
-                    <ButtonRowMobile>
-                      {interviewMethod === "OFFLINE" ? (
-                        <SelectPositiveButtonMobile onClick={() => setInterviewMethod("OFFLINE")} />
-                      ) : (
-                        <UnselectPositiveButtonMobile onClick={() => setInterviewMethod("OFFLINE")} />
-                      )}
-                      {interviewMethod === "ONLINE" ? (
-                        <SelectNegativeButtonMobile onClick={() => setInterviewMethod("ONLINE")} />
-                      ) : (
-                        <UnselectNegativeButtonMobile onClick={() => setInterviewMethod("ONLINE")} />
-                      )}
-                    </ButtonRowMobile>
-                  ) : (
-                    <ButtonRowPC>
-                      {interviewMethod === "OFFLINE" ? (
-                        <SelectPositiveButton onClick={() => setInterviewMethod("OFFLINE")} />
-                      ) : (
-                        <UnselectPositiveButton onClick={() => setInterviewMethod("OFFLINE")} />
-                      )}
-                      {interviewMethod === "ONLINE" ? (
-                        <SelectNegativeButton onClick={() => setInterviewMethod("ONLINE")} />
-                      ) : (
-                        <UnselectNegativeButton onClick={() => setInterviewMethod("ONLINE")} />
-                      )}
-                    </ButtonRowPC>
-                  )}
+                  <ButtonRowPC>
+                    {interviewMethod === "OFFLINE" ? (
+                      <SelectPositiveButton onClick={() => setInterviewMethod("OFFLINE")} />
+                    ) : (
+                      <UnselectPositiveButton onClick={() => setInterviewMethod("OFFLINE")} />
+                    )}
+                    {interviewMethod === "ONLINE" ? (
+                      <SelectNegativeButton onClick={() => setInterviewMethod("ONLINE")} />
+                    ) : (
+                      <UnselectNegativeButton onClick={() => setInterviewMethod("ONLINE")} />
+                    )}
+                  </ButtonRowPC>
 
                   <ErrorText $visible={!isInterviewMethodValid && interviewMethod !== ""}>
                     {!isInterviewMethodValid && interviewMethod !== "" ? "면접 참여 방식을 선택해주세요." : "\u00A0"}
@@ -759,19 +735,11 @@ export default function ApplyIntegrated() {
                   />
 
                   <RadioRow>
-                    {isMO ? (
-                      <RadioLabel onClick={() => setPrivacyAgree((prev) => !prev)}>
-                        {privacyAgree ? <MoSelectedRadio /> : <MoUnselectedRadio />}
-                        <AsteriskText>(필수)</AsteriskText>
-                        <RadioText>개인정보 수집 및 이용에 동의합니다.</RadioText>
-                      </RadioLabel>
-                    ) : (
-                      <RadioLabel onClick={() => setPrivacyAgree((prev) => !prev)}>
-                        {privacyAgree ? <PcSelectedRadio /> : <PcUnselectedRadio />}
-                        <AsteriskText>(필수)</AsteriskText>
-                        <RadioText>개인정보 수집 및 이용에 동의합니다.</RadioText>
-                      </RadioLabel>
-                    )}
+                    <RadioLabel onClick={() => setPrivacyAgree((prev) => !prev)}>
+                      {privacyAgree ? <SelectedRadio /> : <UnselectedRadio />}
+                      <AsteriskText>(필수)</AsteriskText>
+                      <RadioText>개인정보 수집 및 이용에 동의합니다.</RadioText>
+                    </RadioLabel>
                   </RadioRow>
 
                   <ErrorText $visible={!isPrivacyValid && privacyAgree !== false}>
@@ -807,13 +775,7 @@ export default function ApplyIntegrated() {
                                   style={{ display: "inline-block", cursor: "pointer" }}
                                   onClick={() => toggleTime(date, time, "am")}
                                 >
-                                  {isMO ? (
-                                    selected ? (
-                                      <TimeSelectedMobile time={time} />
-                                    ) : (
-                                      <TimeAbledMobile time={time} />
-                                    )
-                                  ) : selected ? (
+                                  {selected ? (
                                     <TimeSelected time={time} />
                                   ) : (
                                     <TimeAbled time={time} />
@@ -833,13 +795,7 @@ export default function ApplyIntegrated() {
                                   style={{ display: "inline-block", cursor: "pointer" }}
                                   onClick={() => toggleTime(date, time, "pm")}
                                 >
-                                  {isMO ? (
-                                    selected ? (
-                                      <TimeSelectedMobile time={time} />
-                                    ) : (
-                                      <TimeAbledMobile time={time} />
-                                    )
-                                  ) : selected ? (
+                                  {selected ? (
                                     <TimeSelected time={time} />
                                   ) : (
                                     <TimeAbled time={time} />
@@ -868,19 +824,11 @@ export default function ApplyIntegrated() {
                   </ExampleContent>
 
                   <RadioRow>
-                    {isMO ? (
-                      <RadioLabel onClick={() => setVideoAgree((prev) => !prev)}>
-                        {videoAgree ? <MoSelectedRadio /> : <MoUnselectedRadio />}
-                        <AsteriskText>(필수)</AsteriskText>
-                        <RadioText>면접 영상 녹화에 동의합니다.</RadioText>
-                      </RadioLabel>
-                    ) : (
-                      <RadioLabel onClick={() => setVideoAgree((prev) => !prev)}>
-                        {videoAgree ? <PcSelectedRadio /> : <PcUnselectedRadio />}
-                        <AsteriskText>(필수)</AsteriskText>
-                        <RadioText>면접 영상 녹화에 동의합니다.</RadioText>
-                      </RadioLabel>
-                    )}
+                    <RadioLabel onClick={() => setVideoAgree((prev) => !prev)}>
+                      {videoAgree ? <SelectedRadio /> : <UnselectedRadio />}
+                      <AsteriskText>(필수)</AsteriskText>
+                      <RadioText>면접 영상 녹화에 동의합니다.</RadioText>
+                    </RadioLabel>
 
                     <ErrorText $visible={!isVideoValid && videoAgree !== false}>
                       {!isVideoValid && videoAgree !== false ? "면접 영상 녹화에 동의해주세요." : "\u00A0"}
