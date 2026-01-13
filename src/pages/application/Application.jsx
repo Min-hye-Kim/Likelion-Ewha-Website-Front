@@ -1105,6 +1105,7 @@ export default function ApplyIntegrated() {
             <SubmitRow $bottomGap={SUBMIT_BOTTOM_GAP}>
               <SubmitStack>
                 <SubmitButton
+                  className="h4-bold"
                   type="button"
                   disabled={!canSubmit || isSubmitting}
                   onClick={onClickSubmit}
@@ -2215,28 +2216,33 @@ const SubmitError = styled.div`
   white-space: pre-wrap;
 `;
 const SubmitButton = styled.button`
-  width: 390px;
-  height: 52px;
+  width: 24.375rem;
+  padding: 1.125rem 2.25rem;
   border: none;
   cursor: pointer;
 
   border-radius: 40px;
-  background: var(--Primary-Main, #05da5b);
-  color: var(--Common-100, #fff);
+  background: var(--primary-main, #05da5b);
+  color: var(--common-100, #fff);
 
-  font-family: Pretendard, -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 24px;
+  transition: all 0.2s ease;
+
+  &:not(:disabled):hover {
+  filter: brightness(0.9);
+  }
 
   &:disabled {
-    cursor: default;
-    background: var(--Neutral-95, #dcdcdc);
-    color: var(--Neutral-70, #9b9b9b);
+    cursor: not-allowed;
+    pointer-events: none;
+    user-select: none;
+    background: var(--neutral-70);
+    color: var(--static-white);
   }
 
   @media (max-width: 799px) {
-    width: 100%;
+    width: 12.5rem;
+    padding: 0.625rem 1.75rem;
+    font-size: 0.875rem;
   }
 `;
 const MoOverlay = styled.div`
