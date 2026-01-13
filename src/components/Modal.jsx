@@ -417,7 +417,11 @@ const Desc = styled.p`
   margin: 0;
   color: var(--neutral-50);
   word-break: keep-all;
-  line-height: 1.5;
+  
+  @media (max-width: 799px) {
+    font-size: 0.875rem;
+    line-height: 1.375rem;
+  }
 `;
 
 const Body = styled.div`
@@ -629,7 +633,6 @@ const ActionBtn = styled.button`
   white-space: nowrap;
 
   min-width: 11.5rem;
-  height: 3.5rem;
   padding: 0.875rem 2.5rem;
   font-size: 1.25rem;
   line-height: 1.75rem;
