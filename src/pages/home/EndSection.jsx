@@ -332,11 +332,8 @@ const SliderWrapper = styled.div`
   position: relative;
   z-index: 10;
 
-  padding-left: max(20px, calc((100% - 1000px) / 2 + 20px));
-
   @media (max-width: 799px) {
     margin-top: -3.75rem;
-    padding-left: 0;
   }
 `;
 

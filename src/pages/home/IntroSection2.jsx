@@ -1,8 +1,55 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import cloverIcon from "../../../public/icons/clover.svg";
+import { 
+  DISPLAY_YEAR, 
+  OPERATING_YEARS, 
+  EWHA_OPERATING_YEARS, 
+  STATS 
+} from "../../config/siteConfig";
+import { useIntersectionObserver } from "@/hooks";
 
 const IntroSection2 = () => {
+  const [animatedYears, setAnimatedYears] = useState(0);
+  const [animatedProjects, setAnimatedProjects] = useState(0);
+  const [animatedGraduates, setAnimatedGraduates] = useState(0);
+  const statsRef = useRef(null);
+  const isVisible = useIntersectionObserver(statsRef);
+
+  // 카운트 업 애니메이션
+  useEffect(() => {
+    if (!isVisible) return;
+
+    const duration = 2000; // 2초
+    const frameRate = 1000 / 60; // 60fps
+    const totalFrames = Math.round(duration / frameRate);
+
+    let frame = 0;
+    const counter = setInterval(() => {
+      frame++;
+      const progress = frame / totalFrames;
+      
+      // 작은 숫자는 더 빠르게 (1.5배속), 큰 숫자는 기본 속도
+      const fastProgress = Math.min(progress * 1.7, 1); // YEARS용
+      const normalProgress = progress; // Projects, Graduates용
+
+      setAnimatedYears(Math.floor(EWHA_OPERATING_YEARS * fastProgress));
+      setAnimatedProjects(Math.floor(STATS.totalProjects * normalProgress));
+      setAnimatedGraduates(Math.floor(STATS.totalGraduates * normalProgress));
+
+      if (frame === totalFrames) {
+        //최종 숫자가 안 맞을 경우를 대비
+        clearInterval(counter);
+        setAnimatedYears(EWHA_OPERATING_YEARS);
+        setAnimatedProjects(STATS.totalProjects);
+        setAnimatedGraduates(STATS.totalGraduates);
+      }
+    }, frameRate);
+
+    //cleanup
+    return () => clearInterval(counter);
+  }, [isVisible]);
+
   return (
     <SectionWrapper>
       {/* === [Part 1] 주황색 영역: LIKELION.UNIV === */}
@@ -14,7 +61,7 @@ const IntroSection2 = () => {
           </div>
 
           <p className="desc-box">
-            멋쟁이사자처럼 대학은 2025년 기준, 전국 53개 대학교에서 13년째
+            멋쟁이사자처럼 대학은 {DISPLAY_YEAR}년 기준, 전국 53개 대학교에서 {OPERATING_YEARS}년째
             운영되고 있는
             <b> 국내 최대 규모의 연합 IT 동아리</b>입니다. 각 대학의 커리큘럼은
             교내 오프라인 교육 세션과 스터디, LIKELION의 VOD 등으로 구성되어
@@ -44,28 +91,28 @@ const IntroSection2 = () => {
           </p>
 
           {/* 통계 박스 */}
-          <StatsGrid>
+          <StatsGrid ref={statsRef}>
             <StatItem>
               <h3>
-                10<span>YEARS</span>
+                {animatedYears}<span>YEARS</span>
               </h3>
               <p>이대 멋사가 탄생한지</p>
             </StatItem>
             <StatItem>
               <h3>
-                50<span>+</span>
+                {animatedProjects}<span>+</span>
               </h3>
               <p>프로젝트 수</p>
             </StatItem>
             <StatItem>
               <h3>
-                120<span>+</span>
+                {animatedGraduates}<span>+</span>
               </h3>
               <p>누적 수료 인원</p>
             </StatItem>
             <StatItem>
               <h3>
-                8.31<span>: 1</span>
+                {STATS.recentCompetitionRate}<span>: 1</span>
               </h3>
               <p>최근 경쟁률</p>
             </StatItem>

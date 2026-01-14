@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { Modal } from "../Modal";
 import { RecruitAPI } from "@/apis";
+import { useGeneration } from "@/hooks";
 import {
   RecruitAlarmButton,
   RecruitInfoButton,
@@ -48,6 +49,7 @@ const RecruitStatusButton = ({ pageType = "home", recruitStyle = "1" }) => {
   // 1. 상태 및 로직 관리
   // 상태: "BEFORE" | "RECRUITING" | "CLOSED" | "FIRST_RESULT" | "FINAL_RESULT"
   const [recruitStatus, setRecruitStatus] = useState(null);
+  const generation = useGeneration();
 
   const navigate = useNavigate();
 
@@ -68,8 +70,8 @@ const RecruitStatusButton = ({ pageType = "home", recruitStyle = "1" }) => {
 
         setRecruitStatus(status);
       } catch (e) {
-        console.error("모집 일정 조회 실패", e);
-        setRecruitStatus("BEFORE"); // 실패 시 기본값
+        console.log("API 조회 실패, default 상태 사용");
+        setRecruitStatus("BEFORE");
       }
     };
 
@@ -151,12 +153,12 @@ const RecruitStatusButton = ({ pageType = "home", recruitStyle = "1" }) => {
             return <ApplyBlackButton onClick={goApplyForm} />;
           }
         } else {
-          return <RecruitInfoButton onClick={goRecruitPage} />;
+          return <RecruitInfoButton generation={generation} onClick={goRecruitPage} />;
         }
       }
 
       case "CLOSED":
-        return <RecruitDisabledButton />;
+        return <RecruitDisabledButton generation={generation} />;
 
       case "FIRST_RESULT":
       case "FINAL_RESULT": {
@@ -172,7 +174,7 @@ const RecruitStatusButton = ({ pageType = "home", recruitStyle = "1" }) => {
       }
       case "BEFORE":
       default:
-        return <RecruitAlarmButton onClick={openAlarmModal} />;
+        return <RecruitAlarmButton generation={generation} onClick={openAlarmModal} />;
     }
   };
 
@@ -193,7 +195,7 @@ const RecruitStatusButton = ({ pageType = "home", recruitStyle = "1" }) => {
         open={isAlarmModalOpen}
         onClose={() => setIsAlarmModalOpen(false)}
         type="info"
-        title="14기 모집 사전 알림 등록"
+        title={generation ? `${generation}기 모집 사전 알림 등록` : "모집 사전 알림 등록"}
         description={
           "이화여대 멋쟁이사자처럼 카카오톡 채널을 친구 추가하시면,\n모집 시작 시 바로 알려드릴게요."
         }

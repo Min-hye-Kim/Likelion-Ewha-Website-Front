@@ -25,15 +25,15 @@ export const DisabledSubmitButton = (props) => (
 );
 
 /* Default */
-export const RecruitInfoButton = (props) => (
+export const RecruitInfoButton = ({ generation, ...props }) => (
   <DefaultButton {...props}>
-    <span>14기 모집 안내 바로가기</span>
+    <span>{generation ? `${generation}기 모집 안내 바로가기` : "모집 안내 바로가기"}</span>
     <ArrowIcon src="/icons/arrowRight.svg" />
   </DefaultButton>
 );
 
-export const RecruitAlarmButton = (props) => (
-  <DefaultButton {...props}>14기 모집 알림 받기</DefaultButton>
+export const RecruitAlarmButton = ({ generation, ...props }) => (
+  <DefaultButton {...props}>{generation ? `${generation}기 모집 알림 받기` : "모집 알림 받기"}</DefaultButton>
 );
 
 /* Recruit Check Button */
@@ -42,9 +42,9 @@ export const RecruitCheckButton = ({ children, ...props }) => (
 );
 
 /* Recruit Disabled Button */
-export const RecruitDisabledButton = (props) => (
+export const RecruitDisabledButton = ({ generation, ...props }) => (
   <RecruitDisabledStyle disabled {...props}>
-    14기 지원 마감
+    {generation ? `${generation}기 지원 마감` : "지원 마감"}
   </RecruitDisabledStyle>
 );
 

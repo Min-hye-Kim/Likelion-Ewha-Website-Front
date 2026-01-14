@@ -1,8 +1,78 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { useState, useEffect } from "react";
+import { RecruitAPI } from "@/apis";
+import { FALLBACK_SCHEDULE } from "@/config/siteConfig";
 
 const RecruitBasicInfo = () => {
     const navigate = useNavigate();
+    const [schedule, setSchedule] = useState(FALLBACK_SCHEDULE);
+
+    // API로부터 모집 일정 가져오기
+    useEffect(() => {
+        const fetchRecruitSchedule = async () => {
+            const currentYear = new Date().getFullYear();
+            
+            try {
+                const data = await RecruitAPI.getRecruitmentSchedule(currentYear);
+                
+                if (data?.recruitment_schedule) {
+                    // API 성공 시 최신 데이터로 업데이트
+                    setSchedule(data.recruitment_schedule);
+                    console.log(`${currentYear}년 모집 일정 데이터 로드 성공`);
+                }
+            } catch (e) {
+                console.log(`API 조회 실패, fallback 데이터 사용 중`);
+            }
+        };
+
+        fetchRecruitSchedule();
+    }, []);
+
+    // 날짜 포맷팅 함수 (2027-01-11T09:00:00+09:00 -> "2027년 01월 11일")
+    const formatDate = (dateString) => {
+        if (!dateString) return "";
+        const date = new Date(dateString);
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, "0");
+        const day = String(date.getDate()).padStart(2, "0");
+        return `${year}년 ${month}월 ${day}일`;
+    };
+
+    // 날짜만 추출 (2027-01-11 -> "11일")
+    const formatDay = (dateString) => {
+        if (!dateString) return "";
+        const date = new Date(dateString);
+        return `${String(date.getDate()).padStart(2, "0")}일`;
+    };
+
+    // 종료일 포맷팅 (시작일과 월이 같으면 일만, 다르면 월 포함)
+    const formatEndDate = (startDateString, endDateString) => {
+        if (!startDateString || !endDateString) return "";
+        const startDate = new Date(startDateString);
+        const endDate = new Date(endDateString);
+        
+        const startMonth = startDate.getMonth();
+        const endMonth = endDate.getMonth();
+        
+        const day = String(endDate.getDate()).padStart(2, "0");
+        
+        if (startMonth === endMonth) {
+            return `${day}일`;
+        } else {
+            const month = String(endDate.getMonth() + 1).padStart(2, "0");
+            return `${month}월 ${day}일`;
+        }
+    };
+
+    // 시간 포맷팅 (2027-01-18T23:59:59+09:00 -> "23시 59분")
+    const formatTime = (dateString) => {
+        if (!dateString) return "";
+        const date = new Date(dateString);
+        const hours = String(date.getHours()).padStart(2, "0");
+        const minutes = String(date.getMinutes()).padStart(2, "0");
+        return `${hours}시 ${minutes}분`;
+    };
 
     return (
         <>
@@ -20,27 +90,33 @@ const RecruitBasicInfo = () => {
                                 <Step>01</Step>
                                 <CardTitle>서류 접수</CardTitle>
                                 <CardDesc>
-                                    0000년 00월 00일 ~ 00일<br />
-                                    (제출 마감일 23시 59분까지 제출)
+                                    {`${formatDate(schedule.application_start)} ~ ${formatEndDate(schedule.application_start, schedule.application_end)}`}<br />
+                                    (제출 마감일 {formatTime(schedule.application_end)}까지 제출)
                                 </CardDesc>
                             </ScheduleCard>
 
                             <ScheduleCard $variant={2}>
                                 <Step>02</Step>
                                 <CardTitle>1차 결과 발표</CardTitle>
-                                <CardDesc>0000년 00월 00일</CardDesc>
+                                <CardDesc>
+                                    {formatDate(schedule.first_result_start)}
+                                </CardDesc>
                             </ScheduleCard>
 
                             <ScheduleCard $variant={3}>
                                 <Step>03</Step>
                                 <CardTitle>면접</CardTitle>
-                                <CardDesc>0000년 00월 00일 ~ 00일</CardDesc>
+                                <CardDesc>
+                                    {`${formatDate(schedule.interview_start)} ~ ${formatEndDate(schedule.interview_start, schedule.interview_end)}`}
+                                </CardDesc>
                             </ScheduleCard>
 
                             <ScheduleCard $variant={4}>
                                 <Step>04</Step>
                                 <CardTitle>최종 결과 발표</CardTitle>
-                                <CardDesc>0000년 00월 00일</CardDesc>
+                                <CardDesc>
+                                    {formatDate(schedule.final_result_start)}
+                                </CardDesc>
                             </ScheduleCard>
                         </ScheduleCards>
                     </ScheduleContentWrapper>
@@ -56,7 +132,7 @@ const RecruitBasicInfo = () => {
                     </TargetTitle>
 
                     <TargetMainDesc>
-                        0000년도 기준 이화여자대학교 재학생 및 휴학생, 자대 편입생
+                        {`${schedule.year}년도 기준 이화여자대학교 재학생 및 휴학생, 자대 편입생`}
                     </TargetMainDesc>
                     <TargetSubDesc>
                         *지원 시 선수강 강의를 수강 완료한 화면 캡쳐본을 제출할 경우 가산점이 부여됩니다.
@@ -65,10 +141,10 @@ const RecruitBasicInfo = () => {
                     <TargetGrid>
                         <TargetItem>
                             <h3>학번 무관! 모든 이화여대 학생</h3>
-                            <p>0000년 기준 모든 이화여자대학교 재학생 및 휴학생, 자대<br />편입생은 지원 가능합니다.</p>
+                            <p>{schedule.year}년 기준 모든 이화여자대학교 재학생 및 휴학생, 자대<br />편입생은 지원 가능합니다.</p>
                             <span className="small-notice">
-                                * 기졸업자(0000년 2월 졸업 예정자), 타대생은 지원 불가<br />
-                                * 0000년 여름 졸업자의 경우 2학기에도 활동을 지속한다는 조건<br />하에 지원 가능
+                                * 기졸업자({schedule.year}년 2월 졸업 예정자), 타대생은 지원 불가<br />
+                                * {schedule.year}년 여름 졸업자의 경우 2학기에도 활동을 지속한다는 조건<br />하에 지원 가능
                             </span>
                         </TargetItem>
 
