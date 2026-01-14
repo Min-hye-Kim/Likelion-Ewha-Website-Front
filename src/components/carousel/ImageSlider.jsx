@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import styled, { keyframes } from "styled-components";
 import { Modal } from "../Modal";
 import IMAGES from "../../data/news.json";
+import { useIntersectionObserver } from "@/hooks";
 
 const ImageSlider = () => {
   const [selectedImg, setSelectedImg] = useState(null);
+  const sliderRef = useRef(null);
+  const isVisible = useIntersectionObserver(sliderRef);
 
   const handleImageClick = (src) => {
     setSelectedImg(src);
@@ -15,12 +18,12 @@ const ImageSlider = () => {
   };
 
   return (
-    <Container>
+    <Container ref={sliderRef}>
       {/*
         첫 번째 그룹: 원본
         두 번째 그룹: 복제본 (무한 스크롤 연결용)
       */}
-      <Track>
+      <Track $isVisible={isVisible}>
         {/* [1] 원본 리스트 */}
         {IMAGES.map((item, index) => (
           <ImageCard
@@ -73,6 +76,11 @@ const Container = styled.div`
   padding-bottom: 20px;
   margin-top: -20px;
   margin-bottom: -20px;
+  padding-left: max(20px, calc((100vw - 1000px) / 2 + 20px));
+  
+  @media (max-width: 799px) {
+    padding-left: 0;
+  }
 `;
 
 const Track = styled.div`
@@ -84,7 +92,8 @@ const Track = styled.div`
     gap: 0.75rem;
   }
 
-  animation: ${scrollAnimation} 30s linear infinite;
+  animation: ${({ $isVisible }) => $isVisible ? scrollAnimation : 'none'} 30s linear infinite;
+  animation-play-state: ${({ $isVisible }) => $isVisible ? 'running' : 'paused'};
 
   /* 호버 시 멈춤 */
   &:hover {
