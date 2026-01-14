@@ -1,14 +1,17 @@
 import styled from "styled-components";
 import RecruitStatusButton from "../../../components/buttons/RecruitStatusButton";
+import { useGeneration } from "@/hooks";
 
 const RecruitHero = () => {
+    const generation = useGeneration();
+
     return (
         <Section>
             <Inner>
                 <Content>
                     <Title>RECRUIT</Title>
                     <Description>
-                        멋쟁이사자처럼 이화여대와 함께할 14기 아기사자를 모집합니다
+                        멋쟁이사자처럼 이화여대와 함께할 {generation}기 아기사자를 모집합니다
                     </Description>
 
                     <ButtonGroup>
