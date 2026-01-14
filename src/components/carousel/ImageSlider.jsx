@@ -7,7 +7,7 @@ import { useIntersectionObserver } from "@/hooks";
 const ImageSlider = () => {
   const [selectedImg, setSelectedImg] = useState(null);
   const sliderRef = useRef(null);
-  const isVisible = useIntersectionObserver(sliderRef);
+  const isVisible = useIntersectionObserver(sliderRef, { threshold: 0.8 });
 
   const handleImageClick = (src) => {
     setSelectedImg(src);
