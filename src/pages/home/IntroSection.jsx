@@ -61,7 +61,7 @@ const Section = styled.section`
   justify-content: center;
 
   align-items: center;
-  min-height: 39.1875rem;
+  min-height: calc(100vh - 5rem);
   padding: 5rem 18.5625rem;
 
   @media (max-width: 799px) {
