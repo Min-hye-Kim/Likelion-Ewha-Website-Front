@@ -1,9 +1,13 @@
 import styled from "styled-components";
 import DropDown3 from "../../../components/dropdown/Dropdown3";
 import RecruitStatusButton from "../../../components/buttons/RecruitStatusButton";
-import { faq } from "@/data";
+import { getFaqData } from "@/data";
+import { useGeneration } from "@/hooks";
 
 const RecruitDetailInfo = () => {
+    const generation = useGeneration();
+    const faqData = getFaqData();
+    
     return (
         <>
             {/* 활동 계획 */}
@@ -13,7 +17,7 @@ const RecruitDetailInfo = () => {
                         <ActivityTitleArea>
                             <img src="/icons/ellipse.svg" alt="icon" />
                             <h2>활동 계획</h2>
-                            <p>* 계획은 13기 기준이며, 14기 활동 계획은 변경될 수 있습니다.</p>
+                            <p>* 계획은 {generation-1}기 기준이며, {generation}기 활동 계획은 변경될 수 있습니다.</p>
                         </ActivityTitleArea>
                         <ActivityLegend>
                             <LegendItem color="#98FBA4">교내 활동</LegendItem>
@@ -95,7 +99,7 @@ const RecruitDetailInfo = () => {
                     </FAQTitleArea>
 
                     <FAQList>
-                        {faq.map((item) => (
+                        {faqData.map((item) => (
                             <DropDown3
                                 key={item.id}
                                 question={item.question}
