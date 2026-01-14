@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import cloverIcon from "../../../public/icons/clover.svg";
 import { 
@@ -9,6 +9,70 @@ import {
 } from "../../config/siteConfig";
 
 const IntroSection2 = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [animatedYears, setAnimatedYears] = useState(0);
+  const [animatedProjects, setAnimatedProjects] = useState(0);
+  const [animatedGraduates, setAnimatedGraduates] = useState(0);
+  const statsRef = useRef(null);
+
+  // Intersection Observer로 화면에 보이는지 감지
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    //요소가 실제로 있을 때 감시 시작
+    if (statsRef.current) {
+      observer.observe(statsRef.current);
+    }
+
+    //감시 종료(cleanup)
+    return () => {
+      if (statsRef.current) {
+        observer.unobserve(statsRef.current);
+      }
+    };
+  }, []);
+
+  // 카운트 업 애니메이션
+  useEffect(() => {
+    if (!isVisible) return;
+
+    const duration = 2000; // 2초
+    const frameRate = 1000 / 60; // 60fps
+    const totalFrames = Math.round(duration / frameRate);
+
+    let frame = 0;
+    const counter = setInterval(() => {
+      frame++;
+      const progress = frame / totalFrames;
+      
+      // 작은 숫자는 더 빠르게 (1.5배속), 큰 숫자는 기본 속도
+      const fastProgress = Math.min(progress * 1.7, 1); // YEARS용
+      const normalProgress = progress; // Projects, Graduates용
+
+      setAnimatedYears(Math.floor(EWHA_OPERATING_YEARS * fastProgress));
+      setAnimatedProjects(Math.floor(STATS.totalProjects * normalProgress));
+      setAnimatedGraduates(Math.floor(STATS.totalGraduates * normalProgress));
+
+      if (frame === totalFrames) {
+        //최종 숫자가 안 맞을 경우를 대비
+        clearInterval(counter);
+        setAnimatedYears(EWHA_OPERATING_YEARS);
+        setAnimatedProjects(STATS.totalProjects);
+        setAnimatedGraduates(STATS.totalGraduates);
+      }
+    }, frameRate);
+
+    //cleanup
+    return () => clearInterval(counter);
+  }, [isVisible]);
+
   return (
     <SectionWrapper>
       {/* === [Part 1] 주황색 영역: LIKELION.UNIV === */}
@@ -50,22 +114,22 @@ const IntroSection2 = () => {
           </p>
 
           {/* 통계 박스 */}
-          <StatsGrid>
+          <StatsGrid ref={statsRef}>
             <StatItem>
               <h3>
-                {EWHA_OPERATING_YEARS}<span>YEARS</span>
+                {animatedYears}<span>YEARS</span>
               </h3>
               <p>이대 멋사가 탄생한지</p>
             </StatItem>
             <StatItem>
               <h3>
-                {STATS.totalProjects}<span>+</span>
+                {animatedProjects}<span>+</span>
               </h3>
               <p>프로젝트 수</p>
             </StatItem>
             <StatItem>
               <h3>
-                {STATS.totalGraduates}<span>+</span>
+                {animatedGraduates}<span>+</span>
               </h3>
               <p>누적 수료 인원</p>
             </StatItem>
