@@ -2,24 +2,10 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 import { RecruitAPI } from "@/apis";
+import { FALLBACK_SCHEDULE } from "@/config/siteConfig";
 
 const RecruitBasicInfo = () => {
     const navigate = useNavigate();
-    
-    // 기본값으로 사용할 fallback 데이터 (백엔드 서버 다운 시 사용)
-    const FALLBACK_SCHEDULE = {
-        year: 2025,
-        generation: 13,
-        application_start: "2025-02-22T00:00:00+09:00",
-        application_end: "2025-03-03T23:59:59+09:00",
-        first_result_start: "2025-03-05T00:00:00+09:00",
-        first_result_end: "2025-03-05T23:59:59+09:00",
-        interview_start: "2025-03-06",
-        interview_end: "2025-03-08",
-        final_result_start: "2025-03-10T00:00:00+09:00",
-        final_result_end: "2025-03-10T23:59:59+09:00"
-    };
-
     const [schedule, setSchedule] = useState(FALLBACK_SCHEDULE);
 
     // API로부터 모집 일정 가져오기
@@ -37,7 +23,6 @@ const RecruitBasicInfo = () => {
                 }
             } catch (e) {
                 console.log(`API 조회 실패, fallback 데이터 사용 중`);
-                // fallback 데이터가 이미 state에 설정되어 있으므로 별도 처리 불필요
             }
         };
 

@@ -38,3 +38,21 @@ export const PREV_GENERATION_INFO = {
 };
 
 export const CLUB_REGISTRATION_YEAR = 2024; // 단대동아리 등록 기준 연도
+
+// ============================================
+// 모집 일정 Fallback 데이터
+// ============================================
+// API 서버 장애 시 표시할 기본 모집 일정
+// ⚠️ 매년 업데이트 필요
+export const FALLBACK_SCHEDULE = {
+    year: 2025,
+    generation: 13,
+    application_start: "2025-02-22T00:00:00+09:00",
+    application_end: "2025-03-03T23:59:59+09:00",
+    first_result_start: "2025-03-05T00:00:00+09:00",
+    first_result_end: "2025-03-05T23:59:59+09:00",
+    interview_start: "2025-03-06",
+    interview_end: "2025-03-08",
+    final_result_start: "2025-03-10T00:00:00+09:00",
+    final_result_end: "2025-03-10T23:59:59+09:00"
+};
