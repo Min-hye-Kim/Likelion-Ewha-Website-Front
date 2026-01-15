@@ -1,19 +1,11 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import { useIsMobile } from "@/hooks";
 
 
 const SegmentBar = ({ items = [], styleType = 1, onSelect, style, className, selected }) => {
   const [activeIndex, setActiveIndex] = useState(selected ?? 0);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 799);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 799);
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     if (selected !== undefined && selected !== activeIndex) {

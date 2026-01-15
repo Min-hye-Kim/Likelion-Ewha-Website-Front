@@ -5,6 +5,7 @@ import SegmentBar from '/src/components/SegmentBar.jsx';
 import DropDown1 from '/src/components/dropdown/Dropdown1';
 import ProjectCard1 from '/src/components/card/ProjectCard1';
 import { projects } from "@/data";
+import { useIsMobile } from '@/hooks';
 
 const ITEMS_PER_PAGE = 6; //페이지 당 카드 수
 const PAGE_BUTTON_LIMIT = 4; //페이지 네이션 4개씩
@@ -26,18 +27,9 @@ function Project() {
     const [category, setCategory] = useState('전체'); //project segmentbar
     const [generation, setGeneration] = useState('전체');
     const [currentPage, setCurrentPage] = useState(1);
-    const [isMobile, setIsMobile] = useState(window.innerWidth < 800);
+    const isMobile = useIsMobile();
 
     const projectList = projects.projects;
-
-    useEffect(() => {
-        const handleResize = () => {
-            setIsMobile(window.innerWidth < 800);
-        };
-
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
 
     /* 데이터 필터링 */
     const filteredProjects = projectList.filter(project => {

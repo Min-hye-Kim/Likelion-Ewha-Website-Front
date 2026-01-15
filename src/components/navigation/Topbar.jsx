@@ -207,7 +207,7 @@ const MoMenuButton = styled.button`
   @media (hover: hover) and (pointer: fine) {
     &:hover img {
       filter: brightness(0) saturate(100%) invert(87%) sepia(18%)
-        saturate(1036%) hue-rotate(72deg) brightness(103%) contrast(96%);
+        saturate(1036%) hue-rotate(57deg) brightness(130%) contrast(96%);
     }
   }
 `;
@@ -281,6 +281,6 @@ const MoItem = styled(NavLink)`
   }
 
   &:hover {
-    color: var(--Atomic-Green-90, #98fba4);
+    color: var(--green-90, #98fba4);
   }
 `;
