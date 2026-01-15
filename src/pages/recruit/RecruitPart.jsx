@@ -1,19 +1,11 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { useIsMobile } from "@/hooks";
 
 const RecruitPart = () => {
     const navigate = useNavigate();
-    const [isMobile, setIsMobile] = useState(window.innerWidth <= 799);
-      
-      useEffect(() => {
-        const handleResize = () => {
-        setIsMobile(window.innerWidth <= 799);
-        };
-    
-        window.addEventListener("resize", handleResize);
-        return () => window.removeEventListener("resize", handleResize);
-      }, []);
+    const isMobile = useIsMobile();
     
     const handleClick = (partValue) => {
         navigate("/recruit/apply", { state: { part: partValue } });

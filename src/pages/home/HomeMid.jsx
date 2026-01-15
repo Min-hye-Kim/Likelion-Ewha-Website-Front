@@ -6,8 +6,11 @@ import Curriculum from "@/components/Curriculum";
 import ProjectCard3 from "@/components/card/ProjectCard3";
 import Carousel2 from "@/components/carousel/Carousel2";
 import { intercollegiates } from "@/data";
+import { useIsMobile } from "@/hooks";
 
 const HomeMid = () => {
+  const isMobile = useIsMobile();
+  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   
   // part: 'pm', 'fe', 'be' 중 하나
@@ -19,25 +22,12 @@ const HomeMid = () => {
     setPart(partMap[index]);
   };
 
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 799);
-  
-  useEffect(() => {
-    const handleResize = () => {
-    setIsMobile(window.innerWidth <= 799);
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
   useEffect(() => {
     const partParam = searchParams.get('part');
     if (partParam && partMap.includes(partParam)) {
       setPart(partParam);
     }
   }, [searchParams]);
-
-  const navigate = useNavigate();
 
   const handleProjectMore = () => {
     navigate("/project");

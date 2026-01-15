@@ -7,6 +7,7 @@ import Input from "../../components/Input";
 import Dropdown2 from "../../components/dropdown/Dropdown2";
 import Dropdown3 from "../../components/dropdown/Dropdown3";
 import { api, ApplicationsAPI } from "@/apis";
+import { useIsMobile } from "@/hooks";
 
 import {
   SelectPositiveButton,
@@ -27,29 +28,6 @@ const FILE_LIMIT = 3;
 const SUBMIT_BOTTOM_GAP = 160;
 
 const isFilled = (v) => v.trim().length > 0;
-
-function useIsMobile(maxWidth = 799) {
-  const [isMobile, setIsMobile] = useState(() => {
-    if (typeof window === "undefined") return false;
-    return window.matchMedia(`(max-width: ${maxWidth}px)`).matches;
-  });
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const mq = window.matchMedia(`(max-width: ${maxWidth}px)`);
-    const onChange = (e) => setIsMobile(e.matches);
-
-    if (mq.addEventListener) mq.addEventListener("change", onChange);
-    else mq.addListener(onChange);
-
-    return () => {
-      if (mq.removeEventListener) mq.removeEventListener("change", onChange);
-      else mq.removeListener(onChange);
-    };
-  }, [maxWidth]);
-
-  return isMobile;
-}
 
 const PART_OPTIONS = [
   { value: "PM_DESIGN", label: "기획•디자인" },

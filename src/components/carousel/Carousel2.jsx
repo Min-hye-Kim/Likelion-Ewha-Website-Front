@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styled, { css } from "styled-components";
 import { projects as projectsData } from "@/data";
 import ProjectCard2 from "../card/ProjectCard2";
+import { useIsMobile } from "@/hooks";
 
 /* ===== 설정값 ===== */
 const CLONE_COUNT = 4;
@@ -32,13 +33,7 @@ const Carousel2 = () => {
   const currentRef = useRef(CLONE_COUNT);
   const [transition, setTransition] = useState(true);
   const [needRecover, setNeedRecover] = useState(false);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 799);
-
-  useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth <= 799);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  const isMobile = useIsMobile();
 
   // 현재 환경에 맞는 값 선택
   const values = isMobile ? MOBILE_VALUES : PC_VALUES;

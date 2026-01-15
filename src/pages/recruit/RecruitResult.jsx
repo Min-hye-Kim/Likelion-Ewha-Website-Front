@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { HomeButton } from '@/components/buttons/MainButtons';
+import { useIsMobile } from '@/hooks';
 
 // 상태별 설정
 const STATUS_CONFIG = {
@@ -59,18 +60,9 @@ const RecruitResult = () => {
   const [resultData, setResultData] = useState(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 799);
+  const isMobile = useIsMobile();
   const round = resultData?.round;
   const roundName = round === '1' ? '1차' : '최종';
-        
-  useEffect(() => {
-    const handleResize = () => {
-    setIsMobile(window.innerWidth <= 799);
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
 
   useEffect(() => {
     // TODO: API 연동
