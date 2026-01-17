@@ -37,8 +37,6 @@ export const PREV_GENERATION_INFO = {
   backendMembers: 6, // 직전 기수 백엔드 파트 인원
 };
 
-export const CLUB_REGISTRATION_YEAR = 2024; // 단대동아리 등록 기준 연도
-
 // ============================================
 // 모집 일정 Fallback 데이터
 // ============================================

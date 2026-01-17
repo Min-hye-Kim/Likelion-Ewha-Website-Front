@@ -1,7 +1,7 @@
 import {
+  DISPLAY_YEAR,
   CURRENT_GENERATION,
   PREV_GENERATION_INFO,
-  CLUB_REGISTRATION_YEAR,
 } from "../config/siteConfig";
 
 export const getFaqData = () => {
@@ -32,7 +32,7 @@ export const getFaqData = () => {
     {
         "id": 3,
         "question": "교내 동아리인가요?",
-        "answer": `멋쟁이사자처럼은 전국 53개 대학이 소속된 연합 동아리입니다.\n하지만 다른 학교들과 함께 진행하는 중앙해커톤, 여기톤, 신촌톤 등의 여름방학 행사와 데모데이를 제외한 대부분의 활동을 이화여대 학생들끼리만 진행하기에 교내 동아리라고 생각하셔도 무방합니다.\n${CLUB_REGISTRATION_YEAR}년 기준 이화여대 멋사는 인공지능대학 소속 단대동아리로 등록되어 있습니다.`
+        "answer": `멋쟁이사자처럼은 전국 53개 대학이 소속된 연합 동아리입니다.\n하지만 다른 학교들과 함께 진행하는 중앙해커톤, 여기톤, 신촌톤 등의 여름방학 행사와 데모데이를 제외한 대부분의 활동을 이화여대 학생들끼리만 진행하기에 교내 동아리라고 생각하셔도 무방합니다.\n${DISPLAY_YEAR}년 기준 이화여대 멋사는 인공지능대학 소속 단대동아리로 등록되어 있습니다.`
     },
     {
         "id": 4,
